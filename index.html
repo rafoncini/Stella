@@ -8,47 +8,47 @@
 </head>
 <body>
     <header class="header">
-      <div class="menu container">
-        <a href="#" class=" logo">logo</a>
-        <input type="checkbox" id="menu">
-        <label for="menu">
-            <img src="images/menu.png" class="menu-icono" alt="">
-            
-        </label>
-
-        <Nav class="navbar">
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Servcios</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Contactos</a></li>
-            </ul>
-        </Nav>
-
-        <div>
-            <ul>
-                <li class="submenu">
-                 
-                    <div id="carrito">
-                        <table id="lista-carrito">
-                            <img src="images/car.svg" alt="Carrito" class="carrito-icono" onclick="mostrarCarrito()">
-                        <thead>
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+        <div class="menu container">
+          <a href="#" class="logo">logo</a>
+          <input type="checkbox" id="menu">
+          <label for="menu">
+              <img src="images/menu.png" class="menu-icono" alt="">
+          </label>
+  
+          <nav class="navbar">
+              <ul>
+                  <li><a href="#">Inicio</a></li>
+                  <li><a href="#">Servicios</a></li>
+                  <li><a href="#">Productos</a></li>
+                  <li><a href="#">Contactos</a></li>
+              </ul>
+          </nav>
+  
+          <div>
+              <ul>
+                  <li class="submenu">
+                    <div id="carrito-container">
+                        <img src="images/car.svg" alt="Carrito" class="carrito-icono" onclick="mostrarCarrito()">
+                        <div id="carrito">
+                            <table id="lista-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
-                </li>
-            </ul>
+                    
+                  </li>
+              </ul>
+          </div>
         </div>
-
-      </div>
-
+      </header>
 
     
     <body>
@@ -65,7 +65,7 @@
             <input type="text" id="mensaje" placeholder="Escribe aquí...">
             <button onclick="cerrarModal()">Cerrar</button>
         </div>
-        
+   
     
         <div class="modal" id="modalPersonalizar">
             <h2>Personalizar prenda</h2>
@@ -85,7 +85,6 @@
         <ul id="listaCarrito"></ul>
         
         <script>
-         let carrito = [];
         let prendaActual = "";
 
         function abrirModal() {
@@ -99,8 +98,6 @@
         }
 
         function agregarAlCarrito() {
-            let prenda = prompt("Ingresa el nombre de la prenda a agregar:");
-            if (prenda) {
                 prendaActual = prenda;
                 let personalizar = confirm("¿Deseas personalizar la prenda?");
                 if (personalizar) {
@@ -112,7 +109,7 @@
                     alert(`${prenda} ha sido agregada al carrito.`);
                 }
             }
-        }
+        
 
         function cerrarPersonalizar() {
             document.getElementById('modalPersonalizar').style.display = 'none';
@@ -132,31 +129,49 @@
             actualizarCarrito();
         }
 
-        function actualizarCarrito() {
-            let lista = document.getElementById('listaCarrito');
-            lista.innerHTML = "";
-            carrito.forEach((prenda, index) => {
-                let item = document.createElement('li');
-                item.textContent = prenda;
-                let botonEliminar = document.createElement('span');
-                botonEliminar.textContent = " ×";
-                botonEliminar.classList.add('eliminar');
-                botonEliminar.onclick = () => eliminarDelCarrito(index);
-                item.appendChild(botonEliminar);
-                lista.appendChild(item);
-            });
-        }
+        let carrito = [];
+
+function agregarAlCarrito(nombre, imagen, precio) {
+    const producto = { nombre, imagen, precio };
+    carrito.push(producto);
+    actualizarCarrito();
+}
+
+function actualizarCarrito() {
+    const listaCarrito = document.querySelector("#lista-carrito tbody");
+    listaCarrito.innerHTML = "";
+    carrito.forEach((producto, index) => {
+        let fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td><img src="${producto.imagen}" width="50"></td>
+            <td>${producto.nombre}</td>
+            <td>$${producto.precio}</td>
+            <td><button onclick="eliminarDelCarrito(${index})">X</button></td>
+        `;
+        listaCarrito.appendChild(fila);
+    });
+}
+
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    actualizarCarrito();
+}
 
         function mostrarCarrito() {
-            document.getElementById('modalCarrito').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
+         const carritoDiv = document.getElementById("carrito");
+         carritoDiv.classList.toggle("abierto");
+}
+
 
         function cerrarCarrito() {
             document.getElementById('modalCarrito').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
         </script>
+
+
+
+
     </body>
 
       <div class="header-content container">
@@ -259,19 +274,18 @@
     </main>
 
     <main class="product-container" id="lista-1">
-
         <h2>Productos</h2>
-
         <div class="product-content">
             <div class="product">
                 <img src="images/1.png" alt="">
                 <div class="product-txt">
                     <h3>Elisyum</h3>
                     <p class="Precio">$200</p>
-                     <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
+    </main>
 
         <div class="product-content">
             <div class="product">
@@ -279,7 +293,7 @@
                 <div class="product-txt">
                     <h3>Elisyum</h3>
                     <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -290,7 +304,7 @@
                 <div class="product-txt">
                     <h3>Elisyum</h3>
                     <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -302,7 +316,7 @@
                 <div class="product-txt">
                     <h3>Elisyum</h3>
                     <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -314,7 +328,7 @@
                 <div class="product-txt">
                     <h3>Elisyum</h3>
                     <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -324,9 +338,9 @@
             <div class="product">
                 <img src="images/6.png" alt="">
                 <div class="product-txt">
-                    <h3>Elisyum</h3>
-                    <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                    <h3>Messi</h3>
+                    <p class="Precio">$390</p>
+                    <button onclick="agregarAlCarrito('Messi', 'images/6.png', 390)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
