@@ -135,6 +135,10 @@ body {
     position: relative;
 }
 
+.submenu-1 {
+    position: relative;
+}
+
 #lista-carrito thead {
     display: none;
 }
@@ -153,14 +157,58 @@ body {
     display: none;
     position: absolute;
     right: 0;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     z-index: 1;
     top: 100%;
-    background-color: #718355;
+    background-color: rgba(113, 131, 85, 0.8);
     padding: 20px;
     min-height: 400px;
+    border-radius: 15px; /* Bordes redondeados */
+
 }
 
 #carrito.abierto {
     display: block;
+}
+
+#btn-personalizar {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: rgba(113, 131, 85, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#btn-personalizar:hover {
+    background-color: rgba(113, 131, 85, 1);
+    transform: scale(1.05);
+}
+
+#personalizacion-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100px; /* Ajusta según sea necesario */
+    background-color: rgba(113, 131, 85, 0.8);
+    color: white;
+    padding: 20px;
+    min-height: 400px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#personalizacion-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
