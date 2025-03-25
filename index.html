@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stella</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header class="header">
+      <div class="menu container">
+        <a href="#" class=" logo">logo</a>
+        <input type="checkbox" id="menu">
+        <label for="menu">
+            <img src="images/menu.png" class="menu-icono" alt="">
+            
+        </label>
+
+        <Nav class="navbar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Servcios</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Contactos</a></li>
+            </ul>
+        </Nav>
+
+        <div>
+            <ul>
+                <li class="submenu">
+                 
+                    <div id="carrito">
+                        <table id="lista-carrito">
+                            <img src="images/car.svg" alt="Carrito" class="carrito-icono" onclick="mostrarCarrito()">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+      </div>
+
+
+    
+    <body>
+
+        <button onclick="abrirModal()">Escribir mensaje</button>
+        <button onclick="agregarAlCarrito()">Agregar prenda al carrito</button>
+        
+       
+        
+        <div class="overlay" id="overlay"></div>
+        
+        <div class="modal" id="modal">
+            <h2>Ea</h2>
+            <input type="text" id="mensaje" placeholder="Escribe aquí...">
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+        
+    
+        <div class="modal" id="modalPersonalizar">
+            <h2>Personalizar prenda</h2>
+            <input type="text" id="textoPersonalizado" placeholder="Escribe tu texto...">
+            <button onclick="guardarPersonalizacion()">Guardar</button>
+            <button onclick="cerrarPersonalizar()">Cancelar</button>
+        </div>
+
+        <div class="modal" id="modalCarrito">
+            
+            <h2>Carrito de compras</h2>
+            <ul id="listaCarrito"></ul>
+            <button onclick="cerrarCarrito()">Cerrar</button>
+        </div>
+        
+        
+        <ul id="listaCarrito"></ul>
+        
+        <script>
+         let carrito = [];
+        let prendaActual = "";
+
+        function abrirModal() {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function agregarAlCarrito() {
+            let prenda = prompt("Ingresa el nombre de la prenda a agregar:");
+            if (prenda) {
+                prendaActual = prenda;
+                let personalizar = confirm("¿Deseas personalizar la prenda?");
+                if (personalizar) {
+                    document.getElementById('modalPersonalizar').style.display = 'block';
+                    document.getElementById('overlay').style.display = 'block';
+                } else {
+                    carrito.push(prenda);
+                    actualizarCarrito();
+                    alert(`${prenda} ha sido agregada al carrito.`);
+                }
+            }
+        }
+
+        function cerrarPersonalizar() {
+            document.getElementById('modalPersonalizar').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function guardarPersonalizacion() {
+            let texto = document.getElementById('textoPersonalizado').value;
+            carrito.push(`${prendaActual} (Personalizado: ${texto})`);
+            actualizarCarrito();
+            cerrarPersonalizar();
+            alert(`${prendaActual} ha sido agregada al carrito con personalización.`);
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            let lista = document.getElementById('listaCarrito');
+            lista.innerHTML = "";
+            carrito.forEach((prenda, index) => {
+                let item = document.createElement('li');
+                item.textContent = prenda;
+                let botonEliminar = document.createElement('span');
+                botonEliminar.textContent = " ×";
+                botonEliminar.classList.add('eliminar');
+                botonEliminar.onclick = () => eliminarDelCarrito(index);
+                item.appendChild(botonEliminar);
+                lista.appendChild(item);
+            });
+        }
+
+        function mostrarCarrito() {
+            document.getElementById('modalCarrito').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('modalCarrito').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+        </script>
+    </body>
+
+      <div class="header-content container">
+        <div class="header-img">
+            <img src="images/right.png" alt="">
+        </div>
+        
+        <h1>Stella</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Aperiam fugiat quos vel soluta eius sequi dolores quas exercitationem consequuntur, 
+            dolore ab unde odit sit enim molestiae ratione nihil repellat harum.
+        </p>
+        <a href="#" class="btn-1">información</a>
+      </div>
+    </header>
+
+
+    <section class="Joyas">
+        <img class="Joyas-img" src=""  alt="">
+        
+        <div class="Joyas-content container">
+            
+            <h2>Joyeria</h2>
+            <p class="txt-p">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                Aspernatur maxime eveniet laboriosam quod quae odio sit doloribus magnam 
+                dolore? Reprehenderit accusamus earum quos aliquid, tenetur repellat 
+                obcaecati quo amet optio?</p>
+
+                <div class="Joyeria-group">
+
+                    <div class="Joya-1">
+                        <img src="images/c1.png" alt="">
+                        <h3>Collares</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Voluptates sint accusamus officia, ad nemo maxime exercitationem dignissimos possimus vel et,
+                             reprehenderit perferendis odio assumenda expedita distinctio, officiis vitae laboriosam accusantium.
+                        </p>
+                    </div>
+                    <div class="Joya-1">
+                        <img src="images/c2.png" alt="">
+                        <h3>Anillos </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Voluptates sint accusamus officia, ad nemo maxime exercitationem dignissimos possimus vel et,
+                             reprehenderit perferendis odio assumenda expedita distinctio, officiis vitae laboriosam accusantium.
+                        </p>
+                    </div>
+                    <div class="Joya-1">
+                        <img src="images/c3.png" alt="">
+                        <h3>Relojes</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Voluptates sint accusamus officia, ad nemo maxime exercitationem dignissimos possimus vel et,
+                             reprehenderit perferendis odio assumenda expedita distinctio, officiis vitae laboriosam accusantium.
+                        </p>
+                    </div>
+
+                </div>
+                <a href="#" class="btn-1">información</a>
+
+        </div>
+
+
+    </section>
+
+    <main class="Servicios">
+        
+        <div class="Servicios-content container">
+           
+        
+            <h2>Tipos de servicios</h2>
+
+            <div class="Servicios-group">
+
+                <div class="servicios-1">
+                    <img src="images/i1.svg" alt="">
+                    <h3>Personalisación</h3>
+                </div>
+                <div class="servicios-1">
+                    <img src="images/i2.svg" alt="">
+                    <h3>Compra</h3>
+                </div>
+                <div class="servicios-1">
+                    <img src="images/i3.svg" alt="">
+                    <h3>Venta</h3>
+                   
+                </div>
+              
+            </div>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Libero temporibus officiis voluptate enim officia,
+                 a cupiditate ullam doloribus laudantium modi asperiores corporis ea iusto tempora praesentium reprehenderit dolores aliquam adipisci!
+            </p>
+            <a href="#" class="btn-1">información</a>
+        </div>
+    </main>
+
+    <main class="product-container" id="lista-1">
+
+        <h2>Productos</h2>
+
+        <div class="product-content">
+            <div class="product">
+                <img src="images/1.png" alt="">
+                <div class="product-txt">
+                    <h3>Elisyum</h3>
+                    <p class="Precio">$200</p>
+                     <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-content">
+            <div class="product">
+                <img src="images/2.png" alt="">
+                <div class="product-txt">
+                    <h3>Elisyum</h3>
+                    <p class="Precio">$200</p>
+                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-content">
+            <div class="product">
+                <img src="images/3.png" alt="">
+                <div class="product-txt">
+                    <h3>Elisyum</h3>
+                    <p class="Precio">$200</p>
+                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="product-content">
+            <div class="product">
+                <img src="images/4.png" alt="">
+                <div class="product-txt">
+                    <h3>Elisyum</h3>
+                    <p class="Precio">$200</p>
+                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="product-content">
+            <div class="product">
+                <img src="images/5.png" alt="">
+                <div class="product-txt">
+                    <h3>Elisyum</h3>
+                    <p class="Precio">$200</p>
+                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="product-content">
+            <div class="product">
+                <img src="images/6.png" alt="">
+                <div class="product-txt">
+                    <h3>Elisyum</h3>
+                    <p class="Precio">$200</p>
+                    <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        
+       
+
+    </div>
+
+
+    </main>
+
+
+    <section class="general">
+        <div class="general-1">
+            <h2>totan sinilique</h2>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Libero temporibus officiis voluptate enim officia,
+                 a cupiditate ullam doloribus laudantium modi asperiores corporis ea iusto tempora praesentium reprehenderit dolores aliquam adipisci!
+            </p>
+            <a href="#" class="btn-1">información</a>
+        </div>
+        <div class="general-2"></div>
+        
+    </section>
+    
+    <section class="general">
+        <div class="general-3"></div>
+        <div class="general-1">
+            <h2>totan sinilique</h2>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Libero temporibus officiis voluptate enim officia,
+                 a cupiditate ullam doloribus laudantium modi asperiores corporis ea iusto tempora praesentium reprehenderit dolores aliquam adipisci!
+            </p>
+            <a href="#" class="btn-1">información</a>
+        </div>
+    </section>
+
+    <section class="blog container ">
+        <h2>blog</h2>
+        <p>Libero temporibus officiis voluptate enim officia</p>
+
+        <div class="blog-content">
+            <div class="blog-1">
+                <img src="images/blog1.jpg" alt="">
+                <h3>blog 1</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Praesentium, molestiae, ullam eius, a quia itaque dicta vitae autem vel illo maiores. 
+                     Quasi voluptatibus, in aspernatur illo dolor numquam alias exercitationem!
+                </p>
+            </div>
+            <div class="blog-1">
+                <img src="images/blog2.jpg" alt="">
+                <h3>blog 2</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Praesentium, molestiae, ullam eius, a quia itaque dicta vitae autem vel illo maiores. 
+                     Quasi voluptatibus, in aspernatur illo dolor numquam alias exercitationem!
+                </p>
+            </div>
+            <div class="blog-1">
+                <img src="images/blog3.jpg" alt="">
+                <h3>blog 3</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Praesentium, molestiae, ullam eius, a quia itaque dicta vitae autem vel illo maiores. 
+                     Quasi voluptatibus, in aspernatur illo dolor numquam alias exercitationem!
+                </p>
+            </div>
+        </div>
+
+        <a href="#" class="btn-1">información</a>
+    </section>
+
+
+    <footer class="footer">
+
+        <div class="footer-content container">           
+            <div class="link">
+                <h3>loren</h3>
+                <ul>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                </ul>
+            </div>
+            <div class="link">
+                <h3>loren</h3>
+                <ul>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                </ul>
+            </div>
+            <div class="link">
+                <h3>loren</h3>
+                <ul>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                </ul>
+            </div>
+            <div class="link">
+                <h3>loren</h3>
+                <ul>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                    <li><a href="#">loren</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>
