@@ -23,7 +23,29 @@
                   <li><a href="#">Contactos</a></li>
               </ul>
           </nav>
-  
+
+          <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
+            <img src="images/Personalisacion.jpeg" alt="Seleccionar Prenda" width="50">
+            Personalizar
+        </button>
+
+        <div id="selector-prenda" style="display: none;">
+            <h3>Selecciona una prenda</h3>
+            <button onclick="seleccionarPrenda('Prenda 1', 'images/1.png')">Prenda 1</button>
+            <button onclick="seleccionarPrenda('Prenda 2', 'images/2.png')">Prenda 2</button>
+            <button onclick="seleccionarPrenda('Prenda 3', 'images/3.png')">Prenda 3</button>
+            <button onclick="seleccionarPrenda('Prenda 4', 'images/4.png')">Prenda 4</button>
+            <button onclick="seleccionarPrenda('Prenda 5', 'images/5.png')">Prenda 5</button>
+            <button onclick="seleccionarPrenda('Prenda 6', 'images/6.png')">Prenda 6</button>
+            
+        </div>
+        
+        <div id="input-texto" style="display: none;">
+            <input type="text" id="texto-personalizado" placeholder="Escribe tu texto">
+            <button onclick="agregarPrendaAlCarrito()">Agregar al carrito</button>
+        </div>
+        
+          
           <div>
               <ul>
                   <li class="submenu">
@@ -36,7 +58,8 @@
                                         <th>Imagen</th>
                                         <th>Nombre</th>
                                         <th>Precio</th>
-                                        <th></th>
+                                        <th>Cantidad</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -52,34 +75,8 @@
 
     
     <body>
-
-        <button onclick="abrirModal()">Escribir mensaje</button>
-        <button onclick="agregarAlCarrito()">Agregar prenda al carrito</button>
-        
        
         
-        <div class="overlay" id="overlay"></div>
-        
-        <div class="modal" id="modal">
-            <h2>Ea</h2>
-            <input type="text" id="mensaje" placeholder="Escribe aquí...">
-            <button onclick="cerrarModal()">Cerrar</button>
-        </div>
-   
-    
-        <div class="modal" id="modalPersonalizar">
-            <h2>Personalizar prenda</h2>
-            <input type="text" id="textoPersonalizado" placeholder="Escribe tu texto...">
-            <button onclick="guardarPersonalizacion()">Guardar</button>
-            <button onclick="cerrarPersonalizar()">Cancelar</button>
-        </div>
-
-        <div class="modal" id="modalCarrito">
-            
-            <h2>Carrito de compras</h2>
-            <ul id="listaCarrito"></ul>
-            <button onclick="cerrarCarrito()">Cerrar</button>
-        </div>
         
         
         <ul id="listaCarrito"></ul>
@@ -167,6 +164,82 @@ function eliminarDelCarrito(index) {
             document.getElementById('modalCarrito').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
+
+  
+
+        function cerrarCarrito() {
+            document.getElementById('modalCarrito').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        let windowcarrito = [];
+
+function agregarAlCarrito(nombre, imagen, precio) {
+    const productoExistente = carrito.find(p => p.nombre === nombre);
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+        carrito.push({ nombre, imagen, precio, cantidad: 1 });
+    }
+    actualizarCarrito();
+}
+function actualizarCarrito() {
+    const listaCarrito = document.querySelector("#lista-carrito tbody");
+    listaCarrito.textContent = "";
+    const fragmento = document.createDocumentFragment();
+    carrito.forEach((producto, index) => {
+        let fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td><img src="${producto.imagen}" width="50"></td>
+            <td>${producto.nombre}</td>
+            <td>$${producto.precio}</td>
+            <td>
+                <button onclick="cambiarCantidad(${index}, -1)">-</button>
+                ${producto.cantidad}
+                <button onclick="cambiarCantidad(${index}, 1)">+</button>
+            </td>
+            <td><button onclick="eliminarDelCarrito(${index})">X</button></td>
+        `;
+        fragmento.appendChild(fila);
+    });
+    listaCarrito.appendChild(fragmento);
+}
+
+
+
+function cambiarCantidad(index, cambio) {
+    carrito[index].cantidad += cambio;
+    if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+    }
+    actualizarCarrito();
+}
+
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    actualizarCarrito();
+}
+
+function toggleSelectorPrenda() {
+    document.getElementById("selector-prenda").style.display = "block";
+}
+
+function seleccionarPrenda(nombre, imagen) {
+    document.getElementById("input-texto").style.display = "block";
+    document.getElementById("input-texto").dataset.nombre = nombre;
+    document.getElementById("input-texto").dataset.imagen = imagen;
+}
+
+function agregarPrendaAlCarrito() {
+    const nombre = document.getElementById("input-texto").dataset.nombre;
+    const imagen = document.getElementById("input-texto").dataset.imagen;
+    const texto = document.getElementById("texto-personalizado").value;
+    const precio = 500;
+    agregarAlCarrito(`${nombre} - ${texto}`, imagen, precio);
+    document.getElementById("selector-prenda").style.display = "none";
+    document.getElementById("input-texto").style.display = "none";
+    document.getElementById("texto-personalizado").value = "";
+}
         </script>
 
 
@@ -235,7 +308,10 @@ function eliminarDelCarrito(index) {
                 </div>
                 <a href="#" class="btn-1">información</a>
 
-        </div>
+        </div>  
+
+
+        
 
 
     </section>
@@ -291,9 +367,9 @@ function eliminarDelCarrito(index) {
             <div class="product">
                 <img src="images/2.png" alt="">
                 <div class="product-txt">
-                    <h3>Elisyum</h3>
-                    <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
+                    <h3>El</h3>
+                    <p class="Precio">$500</p>
+                    <button onclick="agregarAlCarrito('El', 'images/2.png', 500)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -302,9 +378,9 @@ function eliminarDelCarrito(index) {
             <div class="product">
                 <img src="images/3.png" alt="">
                 <div class="product-txt">
-                    <h3>Elisyum</h3>
-                    <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
+                    <h3>Eli</h3>
+                    <p class="Precio">$400</p>
+                    <button onclick="agregarAlCarrito('Eli', 'images/3.png', 400)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -314,9 +390,9 @@ function eliminarDelCarrito(index) {
             <div class="product">
                 <img src="images/4.png" alt="">
                 <div class="product-txt">
-                    <h3>Elisyum</h3>
-                    <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
+                    <h3>Elis</h3>
+                    <p class="Precio">$300</p>
+                    <button onclick="agregarAlCarrito('Elis', 'images/4.png', 300)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -326,9 +402,9 @@ function eliminarDelCarrito(index) {
             <div class="product">
                 <img src="images/5.png" alt="">
                 <div class="product-txt">
-                    <h3>Elisyum</h3>
-                    <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
+                    <h3>Elisy</h3>
+                    <p class="Precio">$220</p>
+                    <button onclick="agregarAlCarrito('Elisy', 'images/5.png', 220)">Agregar al carrito</button>
                 </div>
             </div>
         </div>
