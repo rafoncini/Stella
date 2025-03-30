@@ -1,7 +1,10 @@
 let carrito = [];
+let prendaActual = null;
 
+// Funciones del Carrito
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContadorCarrito();
 }
 
 function cargarCarrito() {
@@ -9,7 +12,14 @@ function cargarCarrito() {
     if (carritoGuardado) {
         carrito = JSON.parse(carritoGuardado);
         actualizarCarrito();
+        actualizarContadorCarrito();
     }
+}
+
+function actualizarContadorCarrito() {
+    const contador = document.getElementById("carrito-count");
+    const totalItems = carrito.reduce((total, producto) => total + producto.cantidad, 0);
+    contador.textContent = totalItems;
 }
 
 function agregarAlCarrito(nombre, imagen, precio) {
@@ -34,16 +44,16 @@ function actualizarCarrito() {
         totalCarrito += totalProducto;
 
         fila.innerHTML = `
-            <td><img src="${producto.imagen}" width="50"></td>
+            <td><img src="${producto.imagen}" width="50" alt="${producto.nombre}"></td>
             <td>${producto.nombre}</td>
             <td>$${producto.precio}</td>
             <td>
-                <button onclick="cambiarCantidad(${index}, -1)">-</button>
+                <button onclick="cambiarCantidad(${index}, -1)" class="btn-cantidad">-</button>
                 ${producto.cantidad}
-                <button onclick="cambiarCantidad(${index}, 1)">+</button>
+                <button onclick="cambiarCantidad(${index}, 1)" class="btn-cantidad">+</button>
             </td>
             <td>$${totalProducto}</td>
-            <td><button onclick="eliminarDelCarrito(${index})">X</button></td>
+            <td><button onclick="eliminarDelCarrito(${index})" class="btn-eliminar">X</button></td>
         `;
         listaCarrito.appendChild(fila);
     });
@@ -67,96 +77,93 @@ function eliminarDelCarrito(index) {
 
 function mostrarCarrito() {
     const carritoDiv = document.getElementById("carrito");
-    carritoDiv.classList.toggle("abierto");
+    carritoDiv.classList.add("abierto");
 }
 
+function cerrarCarrito() {
+    const carritoDiv = document.getElementById("carrito");
+    carritoDiv.classList.remove("abierto");
+}
+
+// Funciones de Personalización
 function toggleSelectorPrenda() {
-    document.getElementById("selector-prenda").style.display = "block";
+    const selectorPrenda = document.getElementById("selector-prenda");
+    selectorPrenda.style.display = selectorPrenda.style.display === "block" ? "none" : "block";
 }
 
 function seleccionarPrenda(nombre, imagen) {
-    document.getElementById("input-texto").style.display = "block";
-    document.getElementById("input-texto").dataset.nombre = nombre;
-    document.getElementById("input-texto").dataset.imagen = imagen;
-}
-
-function agregarPrendaAlCarrito() {
-    const nombre = document.getElementById("input-texto").dataset.nombre;
-    const imagen = document.getElementById("input-texto").dataset.imagen;
-    const texto = document.getElementById("texto-personalizado").value;
-    const precio = 500;
-    agregarAlCarrito(`${nombre} - ${texto}`, imagen, precio);
-    document.getElementById("selector-prenda").style.display = "none";
-    document.getElementById("input-texto").style.display = "none";
-    document.getElementById("texto-personalizado").value = "";
-}
-
-// Cargar el carrito al iniciar la página
-cargarCarrito();
-
-function ttoggleSelectorPrenda() {
-    const selectorPrenda = document.getElementById("selector-prenda");
-    const inputTexto = document.getElementById("input-texto");
-    if (selectorPrenda.style.display === "block") {
-        selectorPrenda.style.display = "none";
-        inputTexto.style.display = "none"; // También ocultamos el campo de texto
-    } else {
-        selectorPrenda.style.display = "block";
-    }
-}
-
-let prendaActual = "";
-
-function abrirModal() {
-    document.getElementById('modal').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-}
-
-function cerrarModal() {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+    prendaActual = { nombre, imagen };
+    document.getElementById("modal-personalizar").style.display = "block";
 }
 
 function cerrarPersonalizar() {
-    document.getElementById('modalPersonalizar').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+    document.getElementById("modal-personalizar").style.display = "none";
+    document.getElementById("texto-personalizado").value = "";
 }
 
-function guardarPersonalizacion() {
-    let texto = document.getElementById('textoPersonalizado').value;
-    carrito.push(`${prendaActual} (Personalizado: ${texto})`);
-    actualizarCarrito();
+function agregarPrendaAlCarrito() {
+    if (!prendaActual) return;
+    
+    const texto = document.getElementById("texto-personalizado").value.trim();
+    if (!texto) {
+        alert("Por favor, ingresa el texto para personalizar");
+        return;
+    }
+
+    const nombrePersonalizado = `${prendaActual.nombre} - ${texto}`;
+    agregarAlCarrito(nombrePersonalizado, prendaActual.imagen, 500);
     cerrarPersonalizar();
-    alert(`${prendaActual} ha sido agregada al carrito con personalización.`);
+}
+
+// Funciones de Venta de Prendas
+function mostrarFormularioVenta() {
+    document.getElementById("modal-venta").style.display = "block";
+}
+
+function cerrarFormularioVenta() {
+    document.getElementById("modal-venta").style.display = "none";
+}
+
+function procesarVenta(event) {
+    event.preventDefault();
+    
+    // Aquí iría la lógica para procesar la venta
+    alert("¡Gracias! Tu prenda ha sido enviada para revisión. Te contactaremos pronto.");
+    cerrarFormularioVenta();
+    event.target.reset();
+    
+    return false;
 }
 
 // Funciones del Checkout
 function mostrarCheckout() {
-    const modalCheckout = document.getElementById('modal-checkout');
-    modalCheckout.style.display = 'block';
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío");
+        return;
+    }
+    document.getElementById("modal-checkout").style.display = "block";
     actualizarResumenCheckout();
 }
 
 function cerrarCheckout() {
-    const modalCheckout = document.getElementById('modal-checkout');
-    modalCheckout.style.display = 'none';
+    document.getElementById("modal-checkout").style.display = "none";
 }
 
 function actualizarResumenCheckout() {
-    const resumenProductos = document.getElementById('resumen-productos');
-    const totalCheckout = document.getElementById('total-checkout');
-    resumenProductos.innerHTML = '';
+    const resumenProductos = document.getElementById("resumen-productos");
+    const totalCheckout = document.getElementById("total-checkout");
+    resumenProductos.innerHTML = "";
     let total = 0;
 
     carrito.forEach(producto => {
         const totalProducto = producto.precio * producto.cantidad;
         total += totalProducto;
 
-        const productoElement = document.createElement('div');
-        productoElement.className = 'producto-resumen';
+        const productoElement = document.createElement("div");
+        productoElement.className = "producto-resumen";
         productoElement.innerHTML = `
             <div class="producto-info">
-                <img src="${producto.imagen}" width="50">
+                <img src="${producto.imagen}" width="50" alt="${producto.nombre}">
                 <div>
                     <p>${producto.nombre}</p>
                     <p>Cantidad: ${producto.cantidad}</p>
@@ -174,12 +181,12 @@ function procesarPedido(event) {
     event.preventDefault();
     
     // Aquí iría la lógica para procesar el pago
-    // Por ahora solo mostraremos un mensaje de confirmación
-    alert('¡Gracias por tu compra! Te enviaremos un correo con los detalles de tu pedido.');
+    alert("¡Gracias por tu compra! Te enviaremos un correo con los detalles de tu pedido.");
     
     // Limpiar el carrito
     carrito = [];
     actualizarCarrito();
+    guardarCarrito();
     cerrarCheckout();
     
     return false;
@@ -193,60 +200,58 @@ document.querySelectorAll('input[name="pago"]').forEach(radio => {
     });
 });
 
-// Funciones para el formulario de venta
-function mostrarFormularioVenta() {
-    const modalVenta = document.getElementById('modal-venta');
-    modalVenta.style.display = 'block';
+// Cerrar modales al hacer clic fuera
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
 }
 
-function cerrarFormularioVenta() {
-    const modalVenta = document.getElementById('modal-venta');
-    modalVenta.style.display = 'none';
+// Funciones para el carrusel de imágenes
+let carruselInterval;
+let imagenActual = 0;
+
+function cambiarImagenManual(direccion) {
+    const imagenes = document.querySelectorAll('.header-img img');
+    
+    // Remover la clase active de todas las imágenes
+    imagenes.forEach(img => img.classList.remove('active'));
+    
+    // Actualizar el índice
+    imagenActual = (imagenActual + direccion + imagenes.length) % imagenes.length;
+    
+    // Agregar la clase active a la imagen actual
+    imagenes[imagenActual].classList.add('active');
+    
+    // Reiniciar el intervalo
+    if (carruselInterval) {
+        clearInterval(carruselInterval);
+    }
+    carruselInterval = setInterval(cambiarImagenAutomatica, 5000);
 }
 
-function procesarVenta(event) {
-    event.preventDefault();
-    
-    // Obtener los datos del formulario
-    const formData = new FormData(event.target);
-    const datosVenta = {
-        nombrePrenda: formData.get('nombre'),
-        categoria: formData.get('categoria'),
-        descripcion: formData.get('descripcion'),
-        precio: formData.get('precio'),
-        nombreVendedor: formData.get('nombreVendedor'),
-        email: formData.get('email'),
-        telefono: formData.get('telefono'),
-        imagenes: formData.getAll('imagenes')
-    };
-
-    // Aquí iría la lógica para procesar la venta
-    // Por ejemplo, enviar los datos a un servidor
-    alert('¡Gracias por tu interés en vender! Nos pondremos en contacto contigo pronto.');
-    
-    // Limpiar el formulario
-    event.target.reset();
-    cerrarFormularioVenta();
-    
-    return false;
+function cambiarImagenAutomatica() {
+    cambiarImagenManual(1);
 }
 
-// Validación de imágenes
-document.querySelector('input[type="file"]').addEventListener('change', function(e) {
-    const maxFiles = 5;
-    const maxSize = 5 * 1024 * 1024; // 5MB
+function inicializarCarrusel() {
+    const imagenes = document.querySelectorAll('.header-img img');
+    imagenActual = 0;
 
-    if (this.files.length > maxFiles) {
-        alert('Solo puedes subir hasta 5 imágenes');
-        this.value = '';
-        return;
+    // Mostrar la primera imagen
+    imagenes[0].classList.add('active');
+
+    // Detener cualquier intervalo existente
+    if (carruselInterval) {
+        clearInterval(carruselInterval);
     }
 
-    for (let file of this.files) {
-        if (file.size > maxSize) {
-            alert('Las imágenes no deben superar los 5MB');
-            this.value = '';
-            return;
-        }
-    }
+    // Iniciar el intervalo automático
+    carruselInterval = setInterval(cambiarImagenAutomatica, 5000);
+}
+
+// Inicializar el carrusel cuando el documento esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarCarrusel();
+    cargarCarrito();
 });

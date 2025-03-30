@@ -12,7 +12,7 @@
           <a href="#" class="logo">logo</a>
           <input type="checkbox" id="menu">
           <label for="menu">
-              <img src="images/menu.png" class="menu-icono" alt="">
+              <img src="images/menu.png" class="menu-icono" alt="Menú">
           </label>
   
           <nav class="navbar">
@@ -24,9 +24,21 @@
               </ul>
           </nav>
 
-          <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
-              Vender Prenda
-          </button>
+          <div class="header-buttons">
+              <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
+                  Vender Prenda
+              </button>
+
+              <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
+                  <img src="images/Personalisacion.jpeg" alt="Personalizar" width="30">
+                  <span>Personalizar</span>
+              </button>
+
+              <div id="carrito-container">
+                  <img src="images/car.svg" alt="Carrito" class="carrito-icono" onclick="mostrarCarrito()">
+                  <span class="carrito-count" id="carrito-count">0</span>
+              </div>
+          </div>
 
           <!-- Modal de Venta de Prenda -->
           <div id="modal-venta" class="modal">
@@ -70,77 +82,30 @@
 
           <meta name="description" content="Stella - Personalización de prendas, joyería y servicios exclusivos.">
 
-          <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
-            <img src="images/Personalisacion.jpeg" alt="Seleccionar Prenda" width="50">
-            Personalizar
-        </button>
-
-        <div id="selector-prenda" style="display: none;">
-            <h3>Selecciona una prenda</h3>
-            <button onclick="seleccionarPrenda('Prenda 1', 'images/1.png')">Prenda 1</button>
-            <button onclick="seleccionarPrenda('Prenda 2', 'images/2.png')">Prenda 2</button>
-            <button onclick="seleccionarPrenda('Prenda 3', 'images/3.png')">Prenda 3</button>
-            <button onclick="seleccionarPrenda('Prenda 4', 'images/4.png')">Prenda 4</button>
-            <button onclick="seleccionarPrenda('Prenda 5', 'images/5.png')">Prenda 5</button>
-            <button onclick="seleccionarPrenda('Prenda 6', 'images/6.png')">Prenda 6</button>
-            
-        </div>
-        
-        <div id="input-texto" style="display: none;">
-            <input type="text" id="texto-personalizado" placeholder="Escribe tu texto">
-            <button onclick="agregarPrendaAlCarrito()">Agregar al carrito</button>
-        </div>
-        
+          <div id="selector-prenda" style="display: none;">
+              <h3>Selecciona una prenda</h3>
+              <button onclick="seleccionarPrenda('Prenda 1', 'images/1.png')">Prenda 1</button>
+              <button onclick="seleccionarPrenda('Prenda 2', 'images/2.png')">Prenda 2</button>
+              <button onclick="seleccionarPrenda('Prenda 3', 'images/3.png')">Prenda 3</button>
+              <button onclick="seleccionarPrenda('Prenda 4', 'images/4.png')">Prenda 4</button>
+              <button onclick="seleccionarPrenda('Prenda 5', 'images/5.png')">Prenda 5</button>
+              <button onclick="seleccionarPrenda('Prenda 6', 'images/6.png')">Prenda 6</button>
+          </div>
           
-          <div>
-              <ul>
-                  <li class="submenu">
-                    <div id="carrito-container">
-                        <img src="images/car.svg" alt="Carrito" class="carrito-icono" onclick="mostrarCarrito()">
-                        <div id="carrito">
-                            <table id="lista-carrito">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4" style="text-align: right;"><strong>Total del Carrito:</strong></td>
-                                        <td id="total-carrito">$0</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <button id="btn-finalizar-compra" class="btn-1" onclick="mostrarCheckout()">Finalizar Compra</button>
-                        </div>
-                    </div>
-                    
-                  </li>
-              </ul>
+          <div id="input-texto" style="display: none;">
+              <input type="text" id="texto-personalizado" placeholder="Escribe tu texto">
+              <button onclick="agregarPrendaAlCarrito()">Agregar al carrito</button>
           </div>
         </div>
       </header>
 
-    
-    <body>
-       
-        
-        
-        
-        <ul id="listaCarrito"></ul>
-
-
-
-    </body>
-
-      <div class="header-content container">
+    <div class="header-content container">
         <div class="header-img">
-            <img src="images/right.png" alt="">
+            <button class="carrusel-control prev" onclick="cambiarImagenManual(-1)">❮</button>
+            <button class="carrusel-control next" onclick="cambiarImagenManual(1)">❯</button>
+            <img src="images/right.png" alt="Imagen 1" class="active">
+            <img src="images/1.png" alt="Imagen 2">
+            <img src="images/2.png" alt="Imagen 3">
         </div>
         
         <h1>Stella</h1>
@@ -150,9 +115,49 @@
             dolore ab unde odit sit enim molestiae ratione nihil repellat harum.
         </p>
         <a href="#" class="btn-1">información</a>
-      </div>
-    </header>
+    </div>
 
+    <!-- Carrito -->
+    <div id="carrito" class="carrito">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-carrito" onclick="cerrarCarrito()">&times;</button>
+        </div>
+        <div class="carrito-content">
+            <table id="lista-carrito">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right;"><strong>Total del Carrito:</strong></td>
+                        <td id="total-carrito">$0</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button id="btn-finalizar-compra" class="btn-1" onclick="mostrarCheckout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Modal de Personalización -->
+    <div id="modal-personalizar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarPersonalizar()">&times;</span>
+            <h2>Personalizar Prenda</h2>
+            <div id="input-texto">
+                <input type="text" id="texto-personalizado" placeholder="Escribe tu texto">
+                <button onclick="agregarPrendaAlCarrito()" class="btn-1">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
 
     <section class="Joyas">
         <img class="Joyas-img" src=""  alt="">
