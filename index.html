@@ -24,6 +24,50 @@
               </ul>
           </nav>
 
+          <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
+              Vender Prenda
+          </button>
+
+          <!-- Modal de Venta de Prenda -->
+          <div id="modal-venta" class="modal">
+              <div class="modal-content venta-content">
+                  <span class="close" onclick="cerrarFormularioVenta()">&times;</span>
+                  <h2>Vender tu Prenda</h2>
+                  <form id="formulario-venta" onsubmit="return procesarVenta(event)">
+                      <div class="form-group">
+                          <h3>Información de la Prenda</h3>
+                          <input type="text" placeholder="Nombre de la prenda" required>
+                          <select required>
+                              <option value="">Selecciona la categoría</option>
+                              <option value="ropa">Ropa</option>
+                              <option value="accesorios">Accesorios</option>
+                              <option value="joyeria">Joyería</option>
+                              <option value="otros">Otros</option>
+                          </select>
+                          <textarea placeholder="Descripción de la prenda" required></textarea>
+                          <input type="number" placeholder="Precio propuesto" required>
+                      </div>
+
+                      <div class="form-group">
+                          <h3>Información de Contacto</h3>
+                          <input type="text" placeholder="Nombre completo" required>
+                          <input type="email" placeholder="Email" required>
+                          <input type="tel" placeholder="Teléfono" required>
+                      </div>
+
+                      <div class="form-group">
+                          <h3>Imágenes de la Prenda</h3>
+                          <div class="imagenes-container">
+                              <input type="file" accept="image/*" multiple required>
+                              <p class="ayuda">Puedes subir hasta 5 imágenes de la prenda</p>
+                          </div>
+                      </div>
+
+                      <button type="submit" class="btn-1">Enviar para Revisión</button>
+                  </form>
+              </div>
+          </div>
+
           <meta name="description" content="Stella - Personalización de prendas, joyería y servicios exclusivos.">
 
           <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
@@ -61,10 +105,18 @@
                                         <th>Nombre</th>
                                         <th>Precio</th>
                                         <th>Cantidad</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4" style="text-align: right;"><strong>Total del Carrito:</strong></td>
+                                        <td id="total-carrito">$0</td>
+                                    </tr>
+                                </tfoot>
                             </table>
+                            <button id="btn-finalizar-compra" class="btn-1" onclick="mostrarCheckout()">Finalizar Compra</button>
                         </div>
                     </div>
                     
@@ -345,6 +397,56 @@
         </div>
 
     </footer>
+
+    <!-- Modal de Checkout -->
+    <div id="modal-checkout" class="modal">
+        <div class="modal-content checkout-content">
+            <span class="close" onclick="cerrarCheckout()">&times;</span>
+            <h2>Finalizar Compra</h2>
+            <div class="checkout-container">
+                <div class="resumen-pedido">
+                    <h3>Resumen del Pedido</h3>
+                    <div id="resumen-productos"></div>
+                    <div class="total-checkout">
+                        <strong>Total:</strong>
+                        <span id="total-checkout">$0</span>
+                    </div>
+                </div>
+                <form id="checkout-form" onsubmit="return procesarPedido(event)">
+                    <h3>Información de Envío</h3>
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Teléfono" required>
+                    <input type="text" placeholder="Dirección" required>
+                    <input type="text" placeholder="Ciudad" required>
+                    <input type="text" placeholder="Código Postal" required>
+                    
+                    <h3>Método de Pago</h3>
+                    <div class="metodos-pago">
+                        <label>
+                            <input type="radio" name="pago" value="tarjeta" checked>
+                            Tarjeta de Crédito/Débito
+                        </label>
+                        <label>
+                            <input type="radio" name="pago" value="transferencia">
+                            Transferencia Bancaria
+                        </label>
+                    </div>
+
+                    <div id="datos-tarjeta">
+                        <input type="text" placeholder="Número de tarjeta" required>
+                        <div class="tarjeta-info">
+                            <input type="text" placeholder="MM/AA" required>
+                            <input type="text" placeholder="CVV" required>
+                        </div>
+                        <input type="text" placeholder="Nombre en la tarjeta" required>
+                    </div>
+
+                    <button type="submit" class="btn-1">Confirmar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="Javascrip.js" defer></script>
 </body>
