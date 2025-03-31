@@ -12,7 +12,7 @@
           <a href="#" class="logo">logo</a>
           <input type="checkbox" id="menu">
           <label for="menu">
-              <img src="images/menu.png" class="menu-icono" alt="Menú">
+                <img src="images/menu.png" class="menu-icono" alt="Menú">
           </label>
   
           <nav class="navbar">
@@ -24,90 +24,39 @@
               </ul>
           </nav>
 
-          <div class="header-buttons">
-              <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
-                  Vender Prenda
-              </button>
+            <div class="header-buttons">
+                <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
+                    Vender Prenda
+                </button>
 
-              <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
-                  <img src="images/Personalisacion.jpeg" alt="Personalizar" width="30">
-                  <span>Personalizar</span>
-              </button>
+          <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
+                    <img src="images/Personalisacion.jpeg" alt="Personalizar">
+                    <span>Personalizar</span>
+        </button>
 
-              <div id="carrito-container">
-                  <img src="images/car.svg" alt="Carrito" class="carrito-icono" onclick="mostrarCarrito()">
-                  <span class="carrito-count" id="carrito-count">0</span>
-              </div>
-          </div>
-
-          <!-- Modal de Venta de Prenda -->
-          <div id="modal-venta" class="modal">
-              <div class="modal-content venta-content">
-                  <span class="close" onclick="cerrarFormularioVenta()">&times;</span>
-                  <h2>Vender tu Prenda</h2>
-                  <form id="formulario-venta" onsubmit="return procesarVenta(event)">
-                      <div class="form-group">
-                          <h3>Información de la Prenda</h3>
-                          <input type="text" placeholder="Nombre de la prenda" required>
-                          <select required>
-                              <option value="">Selecciona la categoría</option>
-                              <option value="ropa">Ropa</option>
-                              <option value="accesorios">Accesorios</option>
-                              <option value="joyeria">Joyería</option>
-                              <option value="otros">Otros</option>
-                          </select>
-                          <textarea placeholder="Descripción de la prenda" required></textarea>
-                          <input type="number" placeholder="Precio propuesto" required>
-                      </div>
-
-                      <div class="form-group">
-                          <h3>Información de Contacto</h3>
-                          <input type="text" placeholder="Nombre completo" required>
-                          <input type="email" placeholder="Email" required>
-                          <input type="tel" placeholder="Teléfono" required>
-                      </div>
-
-                      <div class="form-group">
-                          <h3>Imágenes de la Prenda</h3>
-                          <div class="imagenes-container">
-                              <input type="file" accept="image/*" multiple required>
-                              <p class="ayuda">Puedes subir hasta 5 imágenes de la prenda</p>
-                          </div>
-                      </div>
-
-                      <button type="submit" class="btn-1">Enviar para Revisión</button>
-                  </form>
-              </div>
-          </div>
-
-          <meta name="description" content="Stella - Personalización de prendas, joyería y servicios exclusivos.">
-
-          <div id="selector-prenda" style="display: none;">
-              <h3>Selecciona una prenda</h3>
-              <button onclick="seleccionarPrenda('Prenda 1', 'images/1.png')">Prenda 1</button>
-              <button onclick="seleccionarPrenda('Prenda 2', 'images/2.png')">Prenda 2</button>
-              <button onclick="seleccionarPrenda('Prenda 3', 'images/3.png')">Prenda 3</button>
-              <button onclick="seleccionarPrenda('Prenda 4', 'images/4.png')">Prenda 4</button>
-              <button onclick="seleccionarPrenda('Prenda 5', 'images/5.png')">Prenda 5</button>
-              <button onclick="seleccionarPrenda('Prenda 6', 'images/6.png')">Prenda 6</button>
-          </div>
-          
-          <div id="input-texto" style="display: none;">
-              <input type="text" id="texto-personalizado" placeholder="Escribe tu texto">
-              <button onclick="agregarPrendaAlCarrito()">Agregar al carrito</button>
+                <div id="carrito-container" onclick="mostrarCarrito()">
+                    <img src="images/car.svg" alt="Carrito" class="carrito-icono">
+                    <span class="carrito-count" id="carrito-count">0</span>
+                </div>
+        </div>
+        </div>
+        
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1>Joyeria</h1>
+                <p>Descubre nuestra colección exclusiva de joyas artesanales</p>
+                        </div>
+            <div class="header-img">
+                <button class="carrusel-control prev" onclick="cambiarImagenManual(-1)">❮</button>
+                <button class="carrusel-control next" onclick="cambiarImagenManual(1)">❯</button>
+                <img src="images/right.png" alt="Imagen 1" class="active">
+                <img src="images/1.png" alt="Imagen 2">
+                <img src="images/2.png" alt="Imagen 3">
           </div>
         </div>
       </header>
 
-    <div class="header-content container">
-        <div class="header-img">
-            <button class="carrusel-control prev" onclick="cambiarImagenManual(-1)">❮</button>
-            <button class="carrusel-control next" onclick="cambiarImagenManual(1)">❯</button>
-            <img src="images/right.png" alt="Imagen 1" class="active">
-            <img src="images/1.png" alt="Imagen 2">
-            <img src="images/2.png" alt="Imagen 3">
-        </div>
-        
+      <div class="header-content container">
         <h1>Stella</h1>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -115,7 +64,7 @@
             dolore ab unde odit sit enim molestiae ratione nihil repellat harum.
         </p>
         <a href="#" class="btn-1">información</a>
-    </div>
+      </div>
 
     <!-- Carrito -->
     <div id="carrito" class="carrito">
@@ -127,18 +76,16 @@
             <table id="lista-carrito">
                 <thead>
                     <tr>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
+                        <th>Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Total</th>
-                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="4" style="text-align: right;"><strong>Total del Carrito:</strong></td>
+                        <td colspan="3" style="text-align: right;"><strong>Total del Carrito:</strong></td>
                         <td id="total-carrito">$0</td>
                     </tr>
                 </tfoot>
@@ -150,12 +97,87 @@
     <!-- Modal de Personalización -->
     <div id="modal-personalizar" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="cerrarPersonalizar()">&times;</span>
             <h2>Personalizar Prenda</h2>
             <div id="input-texto">
-                <input type="text" id="texto-personalizado" placeholder="Escribe tu texto">
-                <button onclick="agregarPrendaAlCarrito()" class="btn-1">Agregar al carrito</button>
+                <input type="text" id="texto-personalizado" placeholder="Ingrese el texto para personalizar">
+                <button onclick="agregarPrendaAlCarrito()">Agregar al Carrito</button>
+                <button onclick="cerrarModalPersonalizar()">Cancelar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal de Venta -->
+    <div id="modal-venta" class="modal">
+        <div class="modal-content">
+            <h2>Vender Prenda</h2>
+            <form id="formulario-venta">
+                <div class="form-group">
+                    <label for="nombre-prenda">Nombre de la Prenda:</label>
+                    <input type="text" id="nombre-prenda" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoria-prenda">Categoría:</label>
+                    <select id="categoria-prenda" required>
+                        <option value="">Seleccione una categoría</option>
+                        <option value="camisetas">Camisetas</option>
+                        <option value="pantalones">Pantalones</option>
+                        <option value="vestidos">Vestidos</option>
+                        <option value="accesorios">Accesorios</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion-prenda">Descripción:</label>
+                    <textarea id="descripcion-prenda" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="precio-prenda">Precio Propuesto:</label>
+                    <input type="number" id="precio-prenda" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombre-vendedor">Nombre Completo:</label>
+                    <input type="text" id="nombre-vendedor" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-vendedor">Email:</label>
+                    <input type="email" id="email-vendedor" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono-vendedor">Teléfono:</label>
+                    <input type="tel" id="telefono-vendedor" required>
+                </div>
+                <div class="form-group">
+                    <label for="imagenes-prenda">Imágenes de la Prenda:</label>
+                    <input type="file" id="imagenes-prenda" multiple accept="image/*" required>
+                </div>
+                <button type="submit">Enviar</button>
+                <button type="button" onclick="cerrarFormularioVenta()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Selector de Prendas -->
+    <div id="selector-prenda" class="modal">
+        <div class="modal-content">
+            <h2>Seleccione una Prenda</h2>
+            <div class="product-content">
+                <div class="product">
+                    <img src="images/1.png" alt="Camiseta">
+                    <div class="product-txt">
+                        <h3>Camiseta Básica</h3>
+                        <p class="Precio">$500</p>
+                        <button onclick="seleccionarPrenda({nombre: 'Camiseta Básica', imagen: 'images/1.png', precio: 500})">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="images/2.png" alt="Pantalón">
+                    <div class="product-txt">
+                        <h3>Pantalón Clásico</h3>
+                        <p class="Precio">$800</p>
+                        <button onclick="seleccionarPrenda({nombre: 'Pantalón Clásico', imagen: 'images/2.png', precio: 800})">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+            <button onclick="toggleSelectorPrenda()">Cerrar</button>
         </div>
     </div>
 

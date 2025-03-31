@@ -1,25 +1,42 @@
 let carrito = [];
 let prendaActual = null;
 
+// Variables para el carrusel
+let currentImageIndex = 0;
+const images = document.querySelectorAll('.header-img img');
+
 // Funciones del Carrito
 function guardarCarrito() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    try {
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+    } catch (error) {
+        console.error("Error al guardar el carrito:", error);
+    }
     actualizarContadorCarrito();
 }
 
 function cargarCarrito() {
-    const carritoGuardado = localStorage.getItem("carrito");
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-        actualizarCarrito();
-        actualizarContadorCarrito();
+    try {
+        const carritoGuardado = localStorage.getItem("carrito");
+        if (carritoGuardado) {
+            carrito = JSON.parse(carritoGuardado);
+            actualizarCarrito();
+            actualizarContadorCarrito();
+        }
+    } catch (error) {
+        console.error("Error al cargar el carrito:", error);
     }
 }
 
 function actualizarContadorCarrito() {
     const contador = document.getElementById("carrito-count");
-    const totalItems = carrito.reduce((total, producto) => total + producto.cantidad, 0);
-    contador.textContent = totalItems;
+    if (!contador) {
+        console.error("No se encontró el contador del carrito");
+        return;
+    }
+    
+    const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    contador.textContent = total;
 }
 
 function agregarAlCarrito(nombre, imagen, precio) {
@@ -34,94 +51,163 @@ function agregarAlCarrito(nombre, imagen, precio) {
 }
 
 function actualizarCarrito() {
-    const listaCarrito = document.querySelector("#lista-carrito tbody");
-    listaCarrito.innerHTML = "";
-    let totalCarrito = 0;
+    const tbody = document.querySelector("#lista-carrito tbody");
+    const totalElement = document.getElementById("total-carrito");
+    
+    if (!tbody || !totalElement) {
+        console.error("No se encontraron los elementos del carrito");
+        return;
+    }
 
-    carrito.forEach((producto, index) => {
-        let fila = document.createElement("tr");
-        const totalProducto = producto.precio * producto.cantidad;
-        totalCarrito += totalProducto;
+    tbody.innerHTML = "";
+    let total = 0;
 
-        fila.innerHTML = `
-            <td><img src="${producto.imagen}" width="50" alt="${producto.nombre}"></td>
-            <td>${producto.nombre}</td>
-            <td>$${producto.precio}</td>
+    carrito.forEach((item, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
             <td>
-                <button onclick="cambiarCantidad(${index}, -1)" class="btn-cantidad">-</button>
-                ${producto.cantidad}
-                <button onclick="cambiarCantidad(${index}, 1)" class="btn-cantidad">+</button>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="${item.imagen}" alt="${item.nombre}" style="width: 50px; height: 50px; object-fit: contain;">
+                    <span>${item.nombre}</span>
+                </div>
             </td>
-            <td>$${totalProducto}</td>
-            <td><button onclick="eliminarDelCarrito(${index})" class="btn-eliminar">X</button></td>
+            <td>$${item.precio}</td>
+            <td>
+                <button class="btn-cantidad" onclick="cambiarCantidad(${index}, -1)">-</button>
+                ${item.cantidad}
+                <button class="btn-cantidad" onclick="cambiarCantidad(${index}, 1)">+</button>
+            </td>
+            <td>$${item.precio * item.cantidad}</td>
+            <td>
+                <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">×</button>
+            </td>
         `;
-        listaCarrito.appendChild(fila);
+        tbody.appendChild(tr);
+        total += item.precio * item.cantidad;
     });
 
-    document.getElementById("total-carrito").textContent = `$${totalCarrito}`;
-}
-
-function cambiarCantidad(index, cambio) {
-    if (carrito[index].cantidad + cambio > 0) {
-        carrito[index].cantidad += cambio;
-        actualizarCarrito();
-        guardarCarrito();
-    }
-}
-
-function eliminarDelCarrito(index) {
-    carrito.splice(index, 1);
-    actualizarCarrito();
+    totalElement.textContent = `$${total}`;
     guardarCarrito();
 }
 
+function cambiarCantidad(index, cambio) {
+    if (index < 0 || index >= carrito.length) {
+        console.error("Índice de carrito inválido");
+        return;
+    }
+    
+    carrito[index].cantidad += cambio;
+    if (carrito[index].cantidad < 1) {
+        carrito.splice(index, 1);
+    }
+    actualizarCarrito();
+    actualizarContadorCarrito();
+}
+
+function eliminarDelCarrito(index) {
+    if (index < 0 || index >= carrito.length) {
+        console.error("Índice de carrito inválido");
+        return;
+    }
+    
+    carrito.splice(index, 1);
+    actualizarCarrito();
+    actualizarContadorCarrito();
+}
+
 function mostrarCarrito() {
-    const carritoDiv = document.getElementById("carrito");
-    carritoDiv.classList.add("abierto");
+    const carrito = document.getElementById("carrito");
+    if (!carrito) {
+        console.error("No se encontró el elemento del carrito");
+        return;
+    }
+    carrito.classList.add("abierto");
+    actualizarCarrito();
 }
 
 function cerrarCarrito() {
-    const carritoDiv = document.getElementById("carrito");
-    carritoDiv.classList.remove("abierto");
+    const carrito = document.getElementById("carrito");
+    if (!carrito) {
+        console.error("No se encontró el elemento del carrito");
+        return;
+    }
+    carrito.classList.remove("abierto");
 }
 
 // Funciones de Personalización
 function toggleSelectorPrenda() {
     const selectorPrenda = document.getElementById("selector-prenda");
-    selectorPrenda.style.display = selectorPrenda.style.display === "block" ? "none" : "block";
+    if (selectorPrenda) {
+        if (selectorPrenda.style.display === "block") {
+            selectorPrenda.style.display = "none";
+        } else {
+            selectorPrenda.style.display = "block";
+        }
+    } else {
+        console.error("No se encontró el selector de prendas");
+    }
 }
 
-function seleccionarPrenda(nombre, imagen) {
-    prendaActual = { nombre, imagen };
-    document.getElementById("modal-personalizar").style.display = "block";
-}
-
-function cerrarPersonalizar() {
-    document.getElementById("modal-personalizar").style.display = "none";
-    document.getElementById("texto-personalizado").value = "";
+function seleccionarPrenda(prenda) {
+    prendaActual = prenda;
+    const modalPersonalizar = document.getElementById("modal-personalizar");
+    const inputTexto = document.getElementById("input-texto");
+    const selectorPrenda = document.getElementById("selector-prenda");
+    
+    if (modalPersonalizar && inputTexto) {
+        modalPersonalizar.style.display = "block";
+        inputTexto.style.display = "block";
+        // Cerrar el selector de prendas
+        if (selectorPrenda) {
+            selectorPrenda.style.display = "none";
+        }
+    } else {
+        console.error("No se encontraron los elementos necesarios para la personalización");
+    }
 }
 
 function agregarPrendaAlCarrito() {
-    if (!prendaActual) return;
-    
-    const texto = document.getElementById("texto-personalizado").value.trim();
-    if (!texto) {
-        alert("Por favor, ingresa el texto para personalizar");
+    const textoPersonalizado = document.getElementById("texto-personalizado").value;
+    if (!textoPersonalizado) {
+        alert("Por favor, ingrese el texto para personalizar");
         return;
     }
 
-    const nombrePersonalizado = `${prendaActual.nombre} - ${texto}`;
-    agregarAlCarrito(nombrePersonalizado, prendaActual.imagen, 500);
-    cerrarPersonalizar();
+    if (prendaActual) {
+        const prendaPersonalizada = {
+            ...prendaActual,
+            texto: textoPersonalizado,
+            precio: prendaActual.precio + 10
+        };
+        agregarAlCarrito(prendaPersonalizada);
+        cerrarModalPersonalizar();
+    }
+}
+
+function cerrarModalPersonalizar() {
+    const modalPersonalizar = document.getElementById("modal-personalizar");
+    const inputTexto = document.getElementById("input-texto");
+    if (modalPersonalizar && inputTexto) {
+        modalPersonalizar.style.display = "none";
+        inputTexto.style.display = "none";
+    }
 }
 
 // Funciones de Venta de Prendas
 function mostrarFormularioVenta() {
-    document.getElementById("modal-venta").style.display = "block";
+    const modalVenta = document.getElementById("modal-venta");
+    if (modalVenta) {
+        modalVenta.style.display = "block";
+    } else {
+        console.error("No se encontró el modal de venta");
+    }
 }
 
 function cerrarFormularioVenta() {
-    document.getElementById("modal-venta").style.display = "none";
+    const modalVenta = document.getElementById("modal-venta");
+    if (modalVenta) {
+        modalVenta.style.display = "none";
+    }
 }
 
 function procesarVenta(event) {
@@ -205,53 +291,44 @@ window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
+    if (event.target.id === 'modal-personalizar') {
+        cerrarModalPersonalizar();
+    }
 }
 
 // Funciones para el carrusel de imágenes
-let carruselInterval;
-let imagenActual = 0;
-
-function cambiarImagenManual(direccion) {
-    const imagenes = document.querySelectorAll('.header-img img');
+function cambiarImagenManual(direction) {
+    // Remover la clase active de la imagen actual
+    images[currentImageIndex].classList.remove('active');
     
-    // Remover la clase active de todas las imágenes
-    imagenes.forEach(img => img.classList.remove('active'));
+    // Calcular el nuevo índice
+    currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
     
-    // Actualizar el índice
-    imagenActual = (imagenActual + direccion + imagenes.length) % imagenes.length;
-    
-    // Agregar la clase active a la imagen actual
-    imagenes[imagenActual].classList.add('active');
-    
-    // Reiniciar el intervalo
-    if (carruselInterval) {
-        clearInterval(carruselInterval);
-    }
-    carruselInterval = setInterval(cambiarImagenAutomatica, 5000);
+    // Agregar la clase active a la nueva imagen
+    images[currentImageIndex].classList.add('active');
 }
 
+// Función para cambiar la imagen automáticamente
 function cambiarImagenAutomatica() {
     cambiarImagenManual(1);
 }
 
-function inicializarCarrusel() {
-    const imagenes = document.querySelectorAll('.header-img img');
-    imagenActual = 0;
-
-    // Mostrar la primera imagen
-    imagenes[0].classList.add('active');
-
-    // Detener cualquier intervalo existente
-    if (carruselInterval) {
-        clearInterval(carruselInterval);
-    }
-
-    // Iniciar el intervalo automático
-    carruselInterval = setInterval(cambiarImagenAutomatica, 5000);
-}
+// Iniciar el carrusel automático
+setInterval(cambiarImagenAutomatica, 5000);
 
 // Inicializar el carrusel cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', function() {
     inicializarCarrusel();
     cargarCarrito();
+    actualizarContadorCarrito();
+    
+    // Cerrar modales al hacer clic fuera
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+        if (event.target.id === 'modal-personalizar') {
+            cerrarModalPersonalizar();
+        }
+    }
 });
