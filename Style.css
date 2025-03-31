@@ -1184,47 +1184,199 @@ img:hover {
     .header-content {
         flex-direction: column;
         text-align: center;
-        padding: 10px;
-    }
-
-    .header-img {
-        height: 200px;
-        max-width: 100%;
-        margin-top: 20px;
+        padding: 20px 10px;
     }
 
     .header-txt {
-        width: 100%;
-    }
-
-    .header-txt h1 {
-        font-size: 2.5em;
-    }
-
-    .header-txt p {
-        font-size: 1em;
-    }
-
-    .carrusel-control {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-img {
-        height: 180px;
+        margin-bottom: 20px;
     }
 
     .header-txt h1 {
         font-size: 2em;
     }
 
-    .carrusel-control {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
+    .header-txt p {
+        font-size: 1em;
+    }
+
+    .header-img {
+        width: 100%;
+        max-width: 100%;
+        height: 200px;
+        margin-top: 20px;
+    }
+
+    .header-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #btn-vender, #btn-personalizar {
+        width: auto;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    #btn-personalizar {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #btn-personalizar img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .product-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .product {
+        padding: 10px;
+    }
+
+    .product img {
+        height: 150px;
+    }
+
+    .product-txt h3 {
+        font-size: 1em;
+    }
+
+    .product-txt .Precio {
+        font-size: 0.9em;
+    }
+
+    .product-txt button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .Joyeria-group {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .Joya-1 {
+        padding: 15px;
+    }
+
+    .Joya-1 img {
+        height: 150px;
+    }
+
+    .blog-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .blog-1 {
+        padding: 15px;
+    }
+
+    .blog-1 img {
+        height: 200px;
+    }
+
+    .footer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .link h3 {
+        font-size: 1.2em;
+    }
+
+    .link ul li a {
+        font-size: 0.9em;
+    }
+
+    /* Ajustes para el carrito en móvil */
+    #carrito {
+        width: 100%;
+    }
+
+    .carrito-content {
+        padding: 15px;
+    }
+
+    #lista-carrito th,
+    #lista-carrito td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    #lista-carrito img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-cantidad {
+        padding: 5px 8px;
+        font-size: 0.9em;
+    }
+
+    /* Ajustes para modales en móvil */
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .checkout-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-group {
+        padding: 10px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .tarjeta-info {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-txt h1 {
+        font-size: 1.8em;
+    }
+
+    .product-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #btn-vender, #btn-personalizar {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .modal-content {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
     }
 }
 
