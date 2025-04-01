@@ -119,36 +119,92 @@ body {
     transform: translateY(-2px);
 }
 
-/* Estilos específicos para el modal de personalización */
-#modal-personalizar .modal-content {
-    max-width: 400px;
-    margin: 50px auto;
+/* Estilos para el modal de personalización */
+.productos-carrito {
+    margin: 20px 0;
 }
 
-#input-texto {
+.lista-productos {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.producto-personalizar {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.producto-personalizar img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.producto-info {
+    flex: 1;
+}
+
+.producto-info h4 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.personalizacion-contenido {
+    display: grid;
+    gap: 20px;
     margin-top: 20px;
 }
 
-#input-texto input {
-    width: 100%;
-    padding: 12px;
+.producto-preview {
+    text-align: center;
+}
+
+.producto-preview img {
+    max-width: 300px;
+    height: auto;
+}
+
+.opciones-personalizacion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
     border: 2px solid #eee;
     border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
 }
 
-#input-texto input:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(135, 152, 106, 0.1);
+.botones-accion {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-#input-texto button {
-    padding: 12px 20px;
+.botones-accion button {
+    flex: 1;
+    padding: 12px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -156,19 +212,26 @@ body {
     transition: all 0.3s ease;
 }
 
-#input-texto button:first-of-type {
+.btn-guardar {
     background-color: var(--primary-color);
     color: white;
 }
 
-#input-texto button:last-of-type {
+.btn-volver {
     background-color: #f5f5f5;
     color: #333;
 }
 
-#input-texto button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* Responsive */
+@media (max-width: 768px) {
+    .producto-personalizar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .botones-accion {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 768px) {
@@ -583,14 +646,119 @@ button {
 
 /* Ajustes para el selector de prendas */
 #selector-prenda {
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
 }
 
-#selector-prenda button {
+#selector-prenda.abierto {
+    display: flex;
+}
+
+#selector-prenda .modal-content {
+    background-color: white;
+    width: 90%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+#selector-prenda .modal-content button.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--primary-color);
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+#selector-prenda .modal-content button.close:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+#selector-prenda .product {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(92, 105, 70, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#selector-prenda .product img {
     width: 100%;
-    margin: 5px 0;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(92, 105, 70, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#selector-prenda .product:hover img {
+    transform: scale(1.05);
+}
+
+#selector-prenda .product-txt {
+    text-align: center;
+    width: 100%;
+}
+
+#selector-prenda .product-txt h3 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+#selector-prenda .product-txt .Precio {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+#selector-prenda .product-txt button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#selector-prenda .product-txt button:hover {
+    background-color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    #selector-prenda .product img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    #selector-prenda .product img {
+        height: 150px;
+    }
 }
 
 @media (min-width: 769px) {
@@ -1122,12 +1290,15 @@ img:hover {
     position: relative;
     width: 100%;
     max-width: 800px;
-    height: 250px;
+    height: 300px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    background-color: #f5f5f5;
+    background-color: #4A5D3F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-img img {
@@ -1139,7 +1310,7 @@ img:hover {
     object-fit: contain;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 20px;
 }
 
@@ -1151,109 +1322,365 @@ img:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
+    font-size: 20px;
     cursor: pointer;
-    font-size: 24px;
+    z-index: 2;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 10;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .carrusel-control:hover {
-    background: white;
+    background-color: var(--primary-color);
+    color: white;
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .carrusel-control.prev {
-    left: 20px;
+    left: 15px;
 }
 
 .carrusel-control.next {
-    right: 20px;
+    right: 15px;
 }
 
 @media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px 10px;
-    }
-
-    .header-txt {
-        margin-bottom: 20px;
-    }
-
-    .header-txt h1 {
-        font-size: 2em;
-    }
-
-    .header-txt p {
-        font-size: 1em;
-    }
-
     .header-img {
-        width: 100%;
-        max-width: 100%;
-        height: 200px;
-        margin-top: 20px;
+        height: 250px;
+        max-width: 90%;
     }
 
-    .header-buttons {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+    .carrusel-control {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .carrusel-control.prev {
+        left: 10px;
+    }
+    
+    .carrusel-control.next {
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-img {
+        height: 180px;
+        max-width: 95%;
     }
 
-    #btn-vender, #btn-personalizar {
-        width: auto;
-        padding: 8px 15px;
-        font-size: 0.9em;
+    .carrusel-control {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
     }
-
-    #btn-personalizar {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+    
+    .carrusel-control.prev {
+        left: 8px;
     }
-
-    #btn-personalizar img {
-        width: 20px;
-        height: 20px;
+    
+    .carrusel-control.next {
+        right: 8px;
     }
+}
 
-    .product-content {
+.header-txt {
+    margin-bottom: 20px;
+}
+
+.header-txt h1 {
+    font-size: 2em;
+}
+
+.header-txt p {
+    font-size: 1em;
+}
+
+.header-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#btn-vender, #btn-personalizar {
+    width: auto;
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+#btn-personalizar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#btn-personalizar img {
+    width: 20px;
+    height: 20px;
+}
+
+.product-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+}
+
+.product {
+    padding: 10px;
+}
+
+.product img {
+    height: 150px;
+}
+
+.product-txt h3 {
+    font-size: 1em;
+}
+
+.product-txt .Precio {
+    font-size: 0.9em;
+}
+
+.product-txt button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+.Joyeria-group {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.Joya-1 {
+    padding: 15px;
+}
+
+.Joya-1 img {
+    height: 150px;
+}
+
+.blog-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.blog-1 {
+    padding: 15px;
+}
+
+.blog-1 img {
+    height: 200px;
+}
+
+.footer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.link h3 {
+    font-size: 1.2em;
+}
+
+.link ul li a {
+    font-size: 0.9em;
+}
+
+/* Ajustes para el carrito en móvil */
+#carrito {
+    width: 100%;
+}
+
+.carrito-content {
+    padding: 15px;
+}
+
+#lista-carrito th,
+#lista-carrito td {
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+#lista-carrito img {
+    width: 40px;
+    height: 40px;
+}
+
+.btn-cantidad {
+    padding: 5px 8px;
+    font-size: 0.9em;
+}
+
+/* Ajustes para modales en móvil */
+.modal-content {
+    width: 95%;
+    margin: 10px;
+    padding: 15px;
+}
+
+.checkout-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 8px;
+    font-size: 0.9em;
+}
+
+.tarjeta-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.Joyas {
+    padding: 60px 0;
+    background-color: #f8f8f8;
+    position: relative;
+    overflow: hidden;
+}
+
+.Joyas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(135, 152, 106, 0.1) 0%, rgba(92, 105, 70, 0.1) 100%);
+    z-index: 1;
+}
+
+.Joyas-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.Joyas-content h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.Joyas-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 3px;
+}
+
+.Joyas-content .txt-p {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}
+
+.Joyeria-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.Joya-1 {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(92, 105, 70, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.Joya-1:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(92, 105, 70, 0.2);
+}
+
+.Joya-1 img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.Joya-1:hover img {
+    transform: scale(1.1);
+}
+
+.Joya-1 h3 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin: 20px 0 10px;
+    padding: 0 20px;
+}
+
+.Joya-1 p {
+    color: #666;
+    font-size: 1em;
+    padding: 0 20px 20px;
+    line-height: 1.6;
+}
+
+.Joyas-content .btn-1 {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.Joyas-content .btn-1:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(92, 105, 70, 0.3);
+}
+
+@media (max-width: 1024px) {
+    .Joyeria-group {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Joyas {
+        padding: 40px 0;
     }
 
-    .product {
-        padding: 10px;
-    }
-
-    .product img {
-        height: 150px;
-    }
-
-    .product-txt h3 {
-        font-size: 1em;
-    }
-
-    .product-txt .Precio {
-        font-size: 0.9em;
-    }
-
-    .product-txt button {
-        padding: 8px 15px;
-        font-size: 0.9em;
+    .Joyas-content h2 {
+        font-size: 2em;
     }
 
     .Joyeria-group {
@@ -1261,215 +1688,21 @@ img:hover {
         gap: 20px;
     }
 
-    .Joya-1 {
-        padding: 15px;
-    }
-
     .Joya-1 img {
-        height: 150px;
-    }
-
-    .blog-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .blog-1 {
-        padding: 15px;
-    }
-
-    .blog-1 img {
         height: 200px;
-    }
-
-    .footer {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .link h3 {
-        font-size: 1.2em;
-    }
-
-    .link ul li a {
-        font-size: 0.9em;
-    }
-
-    /* Ajustes para el carrito en móvil */
-    #carrito {
-        width: 100%;
-    }
-
-    .carrito-content {
-        padding: 15px;
-    }
-
-    #lista-carrito th,
-    #lista-carrito td {
-        padding: 10px;
-        font-size: 0.9em;
-    }
-
-    #lista-carrito img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .btn-cantidad {
-        padding: 5px 8px;
-        font-size: 0.9em;
-    }
-
-    /* Ajustes para modales en móvil */
-    .modal-content {
-        width: 95%;
-        margin: 10px;
-        padding: 15px;
-    }
-
-    .checkout-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .form-group {
-        padding: 10px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        padding: 8px;
-        font-size: 0.9em;
-    }
-
-    .tarjeta-info {
-        grid-template-columns: 1fr;
-        gap: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .header-txt h1 {
+    .Joyas-content h2 {
         font-size: 1.8em;
     }
 
-    .product-content {
-        grid-template-columns: 1fr;
+    .Joyas-content .txt-p {
+        font-size: 1em;
     }
 
-    .footer {
-        grid-template-columns: 1fr;
-    }
-
-    .header-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #btn-vender, #btn-personalizar {
-        width: 100%;
-        margin: 5px 0;
-    }
-
-    .modal-content {
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-}
-
-/* Ajustes para las imágenes de joyería */
-.Joya-1 img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    background-color: #f5f5f5;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(92, 105, 70, 0.2);
-}
-
-.Joya-1 img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(92, 105, 70, 0.3);
-}
-
-/* Ajustes para las imágenes del blog */
-.blog-1 img {
-    width: 100%;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    background-color: #f5f5f5;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(92, 105, 70, 0.2);
-}
-
-.blog-1 img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(92, 105, 70, 0.3);
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .header-img {
-        height: 200px;
-        max-width: 100%;
-    }
-    
-    .product img {
+    .Joya-1 img {
         height: 180px;
     }
-    
-    .Joya-1 img {
-        height: 140px;
-    }
-    
-    .blog-1 img {
-        height: 120px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-img {
-        height: 180px;
-    }
-    
-    .product img {
-        height: 160px;
-    }
-    
-    .Joya-1 img {
-        height: 130px;
-    }
-    
-    .blog-1 img {
-        height: 110px;
-    }
-}
-
-/* Ajustes para las imágenes en el carrito */
-#lista-carrito img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    padding: 5px;
-    box-shadow: 0 2px 4px rgba(92, 105, 70, 0.2);
-}
-
-/* Ajustes para las imágenes en el resumen del checkout */
-.producto-info img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    padding: 5px;
-    box-shadow: 0 2px 4px rgba(92, 105, 70, 0.2);
 }

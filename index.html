@@ -42,17 +42,14 @@
         </div>
         
         <div class="header-content container">
-            <div class="header-txt">
-                <h1>Joyeria</h1>
-                <p>Descubre nuestra colección exclusiva de joyas artesanales</p>
-                        </div>
+           
             <div class="header-img">
-                <button class="carrusel-control prev" onclick="cambiarImagenManual(-1)">❮</button>
-                <button class="carrusel-control next" onclick="cambiarImagenManual(1)">❯</button>
-                <img src="images/right.png" alt="Imagen 1" class="active">
-                <img src="images/1.png" alt="Imagen 2">
-                <img src="images/2.png" alt="Imagen 3">
-          </div>
+                <button class="carrusel-control prev" onclick="cambiarImagen(-1)">❮</button>
+                <button class="carrusel-control next" onclick="cambiarImagen(1)">❯</button>
+                <img src="images/ca1.jpeg" alt="Joyas 1" class="active">
+                <img src="images/ca2.jpeg" alt="Joyas 2">
+                <img src="images/ca3.jpeg" alt="Joyas 3">
+            </div>
         </div>
       </header>
 
@@ -161,17 +158,17 @@
             <h2>Seleccione una Prenda</h2>
             <div class="product-content">
                 <div class="product">
-                    <img src="images/1.png" alt="Camiseta">
+                    <img src="images/an.jpeg" alt="Camiseta">
                     <div class="product-txt">
-                        <h3>Camiseta Básica</h3>
+                        <h3>Anillo</h3>
                         <p class="Precio">$500</p>
                         <button onclick="seleccionarPrenda({nombre: 'Camiseta Básica', imagen: 'images/1.png', precio: 500})">Seleccionar</button>
                     </div>
                 </div>
                 <div class="product">
-                    <img src="images/2.png" alt="Pantalón">
+                    <img src="images/co1.jpeg" alt="Pantalón">
                     <div class="product-txt">
-                        <h3>Pantalón Clásico</h3>
+                        <h3>Collar</h3>
                         <p class="Precio">$800</p>
                         <button onclick="seleccionarPrenda({nombre: 'Pantalón Clásico', imagen: 'images/2.png', precio: 800})">Seleccionar</button>
                     </div>
@@ -196,31 +193,21 @@
                 <div class="Joyeria-group">
 
                     <div class="Joya-1">
-                        <img src="images/c1.png" alt="">
-                        <h3>Collares</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Voluptates sint accusamus officia, ad nemo maxime exercitationem dignissimos possimus vel et,
-                             reprehenderit perferendis odio assumenda expedita distinctio, officiis vitae laboriosam accusantium.
-                        </p>
+                        <img src="images/b1.jpeg" alt="Joyas Exclusivas">
+                        <h3>Joyas Exclusivas</h3>
+                        <p>Descubre nuestra colección de joyas únicas y elegantes</p>
                     </div>
+
                     <div class="Joya-1">
-                        <img src="images/c2.png" alt="">
-                        <h3>Anillos </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Voluptates sint accusamus officia, ad nemo maxime exercitationem dignissimos possimus vel et,
-                             reprehenderit perferendis odio assumenda expedita distinctio, officiis vitae laboriosam accusantium.
-                        </p>
+                        <img src="images/p1.jpeg" alt="Diseños Artesanales">
+                        <h3>Diseños Artesanales</h3>
+                        <p>Piezas únicas creadas por artesanos expertos</p>
                     </div>
+
                     <div class="Joya-1">
-                        <img src="images/c3.png" alt="">
-                        <h3>Relojes</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Voluptates sint accusamus officia, ad nemo maxime exercitationem dignissimos possimus vel et,
-                             reprehenderit perferendis odio assumenda expedita distinctio, officiis vitae laboriosam accusantium.
-                        </p>
+                        <img src="images/ca1.jpeg" alt="Colección Premium">
+                        <h3>Colección Premium</h3>
+                        <p>Las joyas más exclusivas para ocasiones especiales</p>
                     </div>
 
                 </div>
@@ -271,31 +258,34 @@
         <h2>Productos</h2>
         <div class="product-content">
             <div class="product">
-                <img src="images/1.png" alt="">
+                <img src="images/co1.jpeg" alt="Collar de Oro">
                 <div class="product-txt">
-                    <h3>Elisyum</h3>
-                    <p class="Precio">$200</p>
-                    <button onclick="agregarAlCarrito('Elisyum', 'images/1.png', 200)">Agregar al carrito</button>
+                    <h3>Collar de Oro</h3>
+                    <p>Collar elegante en oro de 18k con diseño moderno</p>
+                    <p class="Precio">$299.99</p>
+                    <button onclick="agregarAlCarrito('Collar de Oro', 299.99, this.parentElement.previousElementSibling.src)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product">
-                <img src="images/2.png" alt="">
+                <img src="images/ar1.jpeg" alt="Anillo de Diamante">
                 <div class="product-txt">
-                    <h3>El</h3>
-                    <p class="Precio">$500</p>
-                    <button onclick="agregarAlCarrito('El', 'images/2.png', 500)">Agregar al carrito</button>
+                    <h3>Anillo de Diamante</h3>
+                    <p>Anillo de compromiso con diamante central</p>
+                    <p class="Precio">$599.99</p>
+                    <button onclick="agregarAlCarrito('Anillo de Diamante', 599.99, this.parentElement.previousElementSibling.src)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product">
-                <img src="images/3.png" alt="">
+                <img src="images/ar1.jpeg" alt="Pulsera de Plata">
                 <div class="product-txt">
-                    <h3>Eli</h3>
-                    <p class="Precio">$400</p>
-                    <button onclick="agregarAlCarrito('Eli', 'images/3.png', 400)">Agregar al carrito</button>
+                    <h3>Pulsera de Plata</h3>
+                    <p>Pulsera artesanal en plata 925 con detalles</p>
+                    <p class="Precio">$149.99</p>
+                    <button onclick="agregarAlCarrito('Pulsera de Plata', 149.99, this.parentElement.previousElementSibling.src)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product">
-                <img src="images/4.png" alt="">
+                <img src="images/ar1.jpeg" alt="">
                 <div class="product-txt">
                     <h3>Elis</h3>
                     <p class="Precio">$300</p>
@@ -303,7 +293,7 @@
                 </div>
             </div>
             <div class="product">
-                <img src="images/5.png" alt="">
+                <img src="images/an.jpeg" alt="">
                 <div class="product-txt">
                     <h3>Elisy</h3>
                     <p class="Precio">$220</p>
@@ -311,7 +301,7 @@
                 </div>
             </div>
             <div class="product">
-                <img src="images/6.png" alt="">
+                <img src="images/ca1.jpeg" alt="">
                 <div class="product-txt">
                     <h3>Messi</h3>
                     <p class="Precio">$390</p>
@@ -354,28 +344,21 @@
 
         <div class="blog-content">
             <div class="blog-1">
-                <img src="images/blog1.jpg" alt="">
-                <h3>blog 1</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Praesentium, molestiae, ullam eius, a quia itaque dicta vitae autem vel illo maiores. 
-                     Quasi voluptatibus, in aspernatur illo dolor numquam alias exercitationem!
-                </p>
+                <img src="https://images.unsplash.com/photo-1515405295579-ba7e030031d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tendencias en Joyería">
+                <h3>Tendencias en Joyería 2024</h3>
+                <p>Descubre las últimas tendencias en joyería para este año</p>
             </div>
+
             <div class="blog-1">
-                <img src="images/blog2.jpg" alt="">
-                <h3>blog 2</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Praesentium, molestiae, ullam eius, a quia itaque dicta vitae autem vel illo maiores. 
-                     Quasi voluptatibus, in aspernatur illo dolor numquam alias exercitationem!
-                </p>
+                <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cuidado de Joyas">
+                <h3>Cuidado de Joyas</h3>
+                <p>Consejos para mantener tus joyas en perfecto estado</p>
             </div>
+
             <div class="blog-1">
-                <img src="images/blog3.jpg" alt="">
-                <h3>blog 3</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Praesentium, molestiae, ullam eius, a quia itaque dicta vitae autem vel illo maiores. 
-                     Quasi voluptatibus, in aspernatur illo dolor numquam alias exercitationem!
-                </p>
+                <img src="https://images.unsplash.com/photo-1515405295579-ba7e030031d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Joyas Artesanales">
+                <h3>Joyas Artesanales</h3>
+                <p>El valor de las piezas hechas a mano</p>
             </div>
         </div>
 

@@ -8,7 +8,7 @@ const images = document.querySelectorAll('.header-img img');
 // Funciones del Carrito
 function guardarCarrito() {
     try {
-        localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     } catch (error) {
         console.error("Error al guardar el carrito:", error);
     }
@@ -17,10 +17,10 @@ function guardarCarrito() {
 
 function cargarCarrito() {
     try {
-        const carritoGuardado = localStorage.getItem("carrito");
-        if (carritoGuardado) {
-            carrito = JSON.parse(carritoGuardado);
-            actualizarCarrito();
+    const carritoGuardado = localStorage.getItem("carrito");
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        actualizarCarrito();
             actualizarContadorCarrito();
         }
     } catch (error) {
@@ -138,31 +138,27 @@ function cerrarCarrito() {
 function toggleSelectorPrenda() {
     const selectorPrenda = document.getElementById("selector-prenda");
     if (selectorPrenda) {
-        if (selectorPrenda.style.display === "block") {
-            selectorPrenda.style.display = "none";
-        } else {
-            selectorPrenda.style.display = "block";
-        }
-    } else {
-        console.error("No se encontró el selector de prendas");
+        selectorPrenda.classList.toggle('abierto');
     }
 }
 
 function seleccionarPrenda(prenda) {
     prendaActual = prenda;
     const modalPersonalizar = document.getElementById("modal-personalizar");
-    const inputTexto = document.getElementById("input-texto");
     const selectorPrenda = document.getElementById("selector-prenda");
     
-    if (modalPersonalizar && inputTexto) {
+    if (modalPersonalizar) {
         modalPersonalizar.style.display = "block";
-        inputTexto.style.display = "block";
-        // Cerrar el selector de prendas
         if (selectorPrenda) {
-            selectorPrenda.style.display = "none";
+            selectorPrenda.classList.remove('abierto');
         }
-    } else {
-        console.error("No se encontraron los elementos necesarios para la personalización");
+    }
+}
+
+function cerrarModalPersonalizar() {
+    const modalPersonalizar = document.getElementById("modal-personalizar");
+    if (modalPersonalizar) {
+        modalPersonalizar.style.display = "none";
     }
 }
 
@@ -179,17 +175,8 @@ function agregarPrendaAlCarrito() {
             texto: textoPersonalizado,
             precio: prendaActual.precio + 10
         };
-        agregarAlCarrito(prendaPersonalizada);
+        agregarAlCarrito(prendaPersonalizada.nombre, prendaPersonalizada.imagen, prendaPersonalizada.precio);
         cerrarModalPersonalizar();
-    }
-}
-
-function cerrarModalPersonalizar() {
-    const modalPersonalizar = document.getElementById("modal-personalizar");
-    const inputTexto = document.getElementById("input-texto");
-    if (modalPersonalizar && inputTexto) {
-        modalPersonalizar.style.display = "none";
-        inputTexto.style.display = "none";
     }
 }
 
@@ -296,8 +283,19 @@ window.onclick = function(event) {
     }
 }
 
-// Funciones para el carrusel de imágenes
-function cambiarImagenManual(direction) {
+// Función para inicializar el carrusel
+function inicializarCarrusel() {
+    if (images.length === 0) return;
+    
+    // Asegurarse de que la primera imagen esté activa
+    images[0].classList.add('active');
+    currentImageIndex = 0;
+}
+
+// Función para cambiar la imagen manualmente
+function cambiarImagen(direction) {
+    if (images.length === 0) return;
+    
     // Remover la clase active de la imagen actual
     images[currentImageIndex].classList.remove('active');
     
@@ -310,11 +308,22 @@ function cambiarImagenManual(direction) {
 
 // Función para cambiar la imagen automáticamente
 function cambiarImagenAutomatica() {
-    cambiarImagenManual(1);
+    cambiarImagen(1);
 }
 
 // Iniciar el carrusel automático
-setInterval(cambiarImagenAutomatica, 5000);
+let intervaloAutomatico = setInterval(cambiarImagenAutomatica, 4000);
+
+// Detener el carrusel automático cuando el usuario interactúa con los botones
+document.querySelectorAll('.carrusel-control').forEach(button => {
+    button.addEventListener('mouseenter', () => {
+        clearInterval(intervaloAutomatico);
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        intervaloAutomatico = setInterval(cambiarImagenAutomatica, 4000);
+    });
+});
 
 // Inicializar el carrusel cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', function() {
