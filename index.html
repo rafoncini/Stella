@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stella</title>
     <link rel="stylesheet" href="Style.css">
+    
 </head>
 <body>
     <header class="header">
         <div class="menu container">
-          <a href="#" class="logo">logo</a>
+          <a href="#" class="logo">Stella</a>
           <input type="checkbox" id="menu">
           <label for="menu">
                 <img src="images/menu.png" class="menu-icono" alt="Menú">
@@ -17,16 +18,16 @@
   
           <nav class="navbar">
               <ul>
-                  <li><a href="#">Inicio</a></li>
-                  <li><a href="#">Servicios</a></li>
-                  <li><a href="#">Productos</a></li>
-                  <li><a href="#">Contactos</a></li>
+                  <li><a href="#inicio">Inicio</a></li>
+                  <li><a href="#servicios">Servicios</a></li>
+                  <li><a href="#productos">Productos</a></li>
+                  <li><a href="#contacto">Contacto</a></li>
               </ul>
           </nav>
 
             <div class="header-buttons">
                 <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
-                    Vender Prenda
+                    Vender Joya
                 </button>
 
           <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
@@ -42,21 +43,272 @@
         </div>
         
         <div class="header-content container">
-           
+            <div class="header-txt">
+                <h1>Joyeria</h1>
+                <p>Descubre nuestra colección exclusiva de joyas artesanales</p>
+                        </div>
             <div class="header-img">
                 <button class="carrusel-control prev" onclick="cambiarImagen(-1)">❮</button>
                 <button class="carrusel-control next" onclick="cambiarImagen(1)">❯</button>
-                <img src="images/ca1.jpeg" alt="Joyas 1" class="active">
-                <img src="images/ca2.jpeg" alt="Joyas 2">
-                <img src="images/ca3.jpeg" alt="Joyas 3">
-            </div>
+                <img src="images/ca1.jpg" alt="Joyas 1" class="active">
+                <img src="images/ca2.jpg" alt="Joyas 2">
+                <img src="images/ca3.jpg" alt="Joyas 3">
+                <img src="images/ca5.jpg" alt="Joyas 5">
+                <img src="images/ca6.jpg" alt="Joyas 6">
+                <img src="images/b2.jpg" alt="Joyas 7">
+          </div>
         </div>
       </header>
+
+      <section class="services" id="servicios">
+        <div class="services-content container">
+            <div class="services-1">
+                <i class="fas fa-gem"></i>
+                <h3>Diseño Personalizado</h3>
+                <p>Creamos joyas únicas según tus preferencias. Trabajamos contigo para diseñar la pieza perfecta que refleje tu estilo personal.</p>
+            </div>
+            <div class="services-1">
+                <i class="fas fa-tools"></i>
+                <h3>Arreglos y Ajustes</h3>
+                <p>Servicio profesional de reparación y ajuste de joyas. Restauramos tus piezas favoritas con el máximo cuidado y precisión.</p>
+            </div>
+            <div class="services-1">
+                <i class="fas fa-certificate"></i>
+                <h3>Certificación de Autenticidad</h3>
+                <p>Garantizamos la autenticidad de todas nuestras piezas con certificados oficiales y documentación completa.</p>
+            </div>
+        </div>
+      </section>
+
+      <section class="Joyas" id="productos">
+      
+        
+        <div class="Joyas-content container">
+            
+            <h2>Stella</h2>
+            <p class="txt-p">
+                Bienvenidos a Stella, tu destino para joyas únicas y elegantes. 
+                Nos especializamos en crear piezas artesanales que cuentan historias 
+                y capturan momentos especiales. Cada joya en nuestra colección está 
+                cuidadosamente diseñada y elaborada con los materiales más finos, 
+                combinando tradición y modernidad para crear piezas que perduran 
+                en el tiempo.
+            </p>
+
+            <div class="Joyeria-group">
+
+                <div class="Joya-1">
+                    <img src="images/b1.jpg" alt="Joyas Exclusivas">
+                    <h3>Joyas Exclusivas</h3>
+                    <p>Descubre nuestra colección de joyas únicas y elegantes, perfectas para ocasiones especiales</p>
+                </div>
+
+                <div class="Joya-1">
+                    <img src="images/p1.jpg" alt="Diseños Artesanales">
+                    <h3>Diseños Artesanales</h3>
+                    <p>Piezas únicas creadas por artesanos expertos, cada una con su propia historia</p>
+                </div>
+
+                <div class="Joya-1">
+                    <img src="images/ar1.jpg" alt="Colección Premium">
+                    <h3>Colección Premium</h3>
+                    <p>Las joyas más exclusivas para momentos inolvidables, con acabados de lujo</p>
+                </div>
+
+            </div>
+            <a href="#" class="btn-1">Explorar Colección</a>
+
+        </div>  
+      </section>
+
+      <section class="general" id="general">
+        <div class="general-content container">
+            <div class="general-txt">
+                <h2>Nuestra Historia</h2>
+                <p>Desde 2024, Stella ha sido sinónimo de excelencia en joyería artesanal. 
+                   Nuestra pasión por crear piezas únicas y la dedicación a la calidad nos 
+                   han convertido en referentes en el mundo de la joyería fina. Cada pieza 
+                   que creamos cuenta una historia y lleva consigo la tradición y el 
+                   cuidado de nuestros artesanos expertos.</p>
+                <a href="#" class="btn-1">Conocer Más</a>
+            </div>
+            
+        </div>
+      </section>
+
+      <section class="general">
+        <div class="general-content container">
+    
+            <div class="general-txt">
+                <h2>Compromiso con la Calidad</h2>
+                <p>En Stella, la calidad es nuestra prioridad. Utilizamos solo los mejores 
+                   materiales y gemas certificadas. Nuestro proceso de fabricación combina 
+                   técnicas tradicionales con tecnología moderna para garantizar la 
+                   durabilidad y belleza de cada pieza. Cada joya pasa por rigurosos 
+                   controles de calidad antes de llegar a tus manos.</p>
+                <a href="#" class="btn-1">Nuestro Proceso</a>
+            </div>
+        </div>
+      </section>
+
+      <section class="blog">
+        <h2>Blog</h2>
+        <p class="txt-p">Descubre las últimas tendencias y novedades en el mundo de la joyería</p>
+        
+        <div class="blog-group">
+            <div class="blog-1">
+                <img src="images/ca6.jpg" alt="Tendencias en Joyería">
+                <div class="blog-content">
+                    <h3>Tendencias en Joyería verano 2024</h3>
+                    <p>Descubre las últimas tendencias en joyería para este año, desde piezas minimalistas hasta diseños llamativos.</p>
+                    <div class="blog-footer">
+                        <span class="fecha">15 Mar 2024</span>
+                        <a href="#" class="leer-mas">Leer más →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-1">
+                <img src="images/b2.jpg" alt="Cuidado de Joyas">
+                <div class="blog-content">
+                    <h3>Cuidado de Joyas</h3>
+                    <p>Consejos expertos para mantener tus joyas en perfecto estado y prolongar su belleza a lo largo del tiempo.</p>
+                    <div class="blog-footer">
+                        <span class="fecha">10 Mar 2024</span>
+                        <a href="#" class="leer-mas">Leer más →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-1">
+                <img src="images/p1.jpg" aes>
+                <div class="blog-content">
+                    <h3>Joyas Artesanales</h3>
+                    <p>El valor y la belleza de las piezas hechas a mano y por qué son tan especiales en el mundo de la joyería.</p>
+                    <div class="blog-footer">
+                        <span class="fecha">5 Mar 2024</span>
+                        <a href="#" class="leer-mas">Leer más →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-container" id="lista-1">
+        <h2>Productos</h2>
+        <div class="product-content">
+            <div class="product">
+                <img src="images/co1.jpg" alt="Collar de Oro Serpiente">
+                <div class="product-txt">
+                    <div>
+                        <h3>Collar Serpiente Dorado</h3>
+                        <p>Elegante collar de oro 18k con diseño de serpiente flexible, acabado brillante</p>
+                        <p class="Precio">$599.99</p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Collar Serpiente Dorado', 599.99, 'images/co1.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="images/ar2.jpg" alt="Aretes de Oro Espiral">
+                <div class="product-txt">
+                    <div>
+                        <h3>Aretes Espiral Dorados</h3>
+                        <p>Aretes de oro con diseño espiral moderno, perfectos para ocasiones especiales</p>
+                        <p class="Precio">$449.99</p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Aretes Espiral Dorados', 449.99, 'images/ar2.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="images/ar1.jpg" alt="Set de aretes y collar">
+                <div class="product-txt">
+                    <div>
+                        <h3>Set de aretes y collar</h3>
+                        <p>Set simple y elegante en oro 14k</p>
+                        <p class="Precio">$499.99</p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Set de aretes y collar', 499.99, 'images/ar1.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="images/an1.jpg" alt="Anillo Hojas Dorado">
+                <div class="product-txt">
+                    <div>
+                        <h3>Anillo Hojas de Oro</h3>
+                        <p>Anillo elegante en oro 18k con diseño de hojas y acabado mate</p>
+                        <p class="Precio">$399.99</p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Anillo Hojas de Oro', 399.99, 'images/an1.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="images/co2.jpg" alt="Set de Joyas Corazón">
+                <div class="product-txt">
+                    <div>
+                        <h3>Set Corazón Dorado</h3>
+                        <p>Conjunto de collar y aretes con diseño de corazón en oro 18k</p>
+                        <p class="Precio">$799.99</p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Set Corazón Dorado', 799.99, 'images/co2.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="images/g1.jpg" alt="Conjunto Premium">
+                <div class="product-txt">
+                    <div>
+                        <h3>Conjunto Premium Stella</h3>
+                        <p>Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k</p>
+                        <p class="Precio">$1,299.99</p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Conjunto Premium Stella', 1299.99, 'images/g1.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="footer-1">
+                <h3>Stella Joyería</h3>
+                <p>Tu destino para joyas únicas y elegantes. Creando momentos especiales desde 2010.</p>
+            </div>
+            <div class="footer-1">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-1">
+                <h3>Contacto</h3>
+                <p>Email: info@stellajoyeria.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Dirección: Calle Principal #123</p>
+            </div>
+            <div class="footer-1">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Carrito -->
-    <div id="carrito" class="carrito">
+    <div class="overlay"></div>
+    <div id="carrito">
         <div class="carrito-header">
-            <h3>Tu Carrito</h3>
-            <button class="close-carrito" onclick="cerrarCarrito()">&times;</button>
+            <h2>Carrito de Compras</h2>
+            <button class="btn-cerrar-carrito">&times;</button>
         </div>
         <div class="carrito-content">
             <table id="lista-carrito">
@@ -66,17 +318,18 @@
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Total</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" style="text-align: right;"><strong>Total del Carrito:</strong></td>
-                        <td id="total-carrito">$0</td>
-                    </tr>
-                </tfoot>
             </table>
-            <button id="btn-finalizar-compra" class="btn-1" onclick="mostrarCheckout()">Finalizar Compra</button>
+        </div>
+        <div class="carrito-footer">
+            <div class="total">
+                <span>Total:</span>
+                <span id="total-carrito">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="mostrarCheckout()">Finalizar Compra</button>
         </div>
     </div>
 
@@ -147,7 +400,7 @@
             <h2>Seleccione una Prenda</h2>
             <div class="product-content">
                 <div class="product">
-                    <img src="images/an.jpeg" alt="Camiseta">
+                    <img src="images/an2.jpg" alt="Camiseta">
                     <div class="product-txt">
                         <h3>Anillo</h3>
                         <p class="Precio">$500</p>
@@ -155,7 +408,7 @@
                     </div>
                 </div>
                 <div class="product">
-                    <img src="images/co1.jpeg" alt="Pantalón">
+                    <img src="images/co1.jpg" alt="Pantalón">
                     <div class="product-txt">
                         <h3>Collar</h3>
                         <p class="Precio">$800</p>
@@ -167,289 +420,48 @@
         </div>
     </div>
 
-    <section class="Joyas">
-        <img class="Joyas-img" src=""  alt="">
-        
-        <div class="Joyas-content container">
-            
-            <h2>Stella</h2>
-            <p class="txt-p">
-                Bienvenidos a Stella, tu destino para joyas únicas y elegantes. 
-                Nos especializamos en crear piezas artesanales que cuentan historias 
-                y capturan momentos especiales. Cada joya en nuestra colección está 
-                cuidadosamente diseñada y elaborada con los materiales más finos, 
-                combinando tradición y modernidad para crear piezas que perduran 
-                en el tiempo.
-            </p>
-
-            <div class="Joyeria-group">
-
-                <div class="Joya-1">
-                        <img src="images/b1.jpeg" alt="Joyas Exclusivas">
-                        <h3>Joyas Exclusivas</h3>
-                    <p>Descubre nuestra colección de joyas únicas y elegantes, perfectas para ocasiones especiales</p>
-                </div>
-
-                <div class="Joya-1">
-                    <img src="images/p1.jpeg" alt="Diseños Artesanales">
-                    <h3>Diseños Artesanales</h3>
-                    <p>Piezas únicas creadas por artesanos expertos, cada una con su propia historia</p>
-                </div>
-
-                <div class="Joya-1">
-                    <img src="images/ca1.jpeg" alt="Colección Premium">
-                    <h3>Colección Premium</h3>
-                    <p>Las joyas más exclusivas para momentos inolvidables, con acabados de lujo</p>
-                </div>
-
-            </div>
-            <a href="#" class="btn-1">Explorar Colección</a>
-
-        </div>  
-
-
-        
-
-
-    </section>
-
-    <main class="Servicios">
-        
-        <div class="Servicios-content container">
-           
-        
-            <h2>Tipos de servicios</h2>
-
-            <div class="Servicios-group">
-
-                <div class="servicios-1">
-                    <img src="images/i1.svg" alt="">
-                    <h3>Personalización</h3>
-                </div>
-                <div class="servicios-1">
-                    <img src="images/i2.svg" alt="">
-                    <h3>Compra</h3>
-                </div>
-                <div class="servicios-1">
-                    <img src="images/i3.svg" alt="">
-                    <h3>Venta</h3>
-                   
-                </div>
-              
-            </div>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Libero temporibus officiis voluptate enim officia,
-                 a cupiditate ullam doloribus laudantium modi asperiores corporis ea iusto tempora praesentium reprehenderit dolores aliquam adipisci!
-            </p>
-            <a href="#" class="btn-1">información</a>
-        </div>
-    </main>
-
-    <main class="product-container" id="lista-1">
-        <h2>Productos</h2>
-        <div class="product-content">
-            <div class="product">
-                <img src="images/co1.jpeg" alt="Collar de Oro">
-                <div class="product-txt">
-                    <h3>Collar de Oro</h3>
-                    <p>Collar elegante en oro de 18k con diseño moderno</p>
-                    <p class="Precio">$299.99</p>
-                    <button onclick="agregarAlCarrito('Collar de Oro', 299.99, this.parentElement.previousElementSibling.src)">Agregar al Carrito</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/ar1.jpeg" alt="Anillo de Diamante">
-                <div class="product-txt">
-                    <h3>Anillo de Diamante</h3>
-                    <p>Anillo de compromiso con diamante central</p>
-                    <p class="Precio">$599.99</p>
-                    <button onclick="agregarAlCarrito('Anillo de Diamante', 599.99, this.parentElement.previousElementSibling.src)">Agregar al Carrito</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/ar1.jpeg" alt="Pulsera de Plata">
-                <div class="product-txt">
-                    <h3>Pulsera de Plata</h3>
-                    <p>Pulsera artesanal en plata 925 con detalles</p>
-                    <p class="Precio">$149.99</p>
-                    <button onclick="agregarAlCarrito('Pulsera de Plata', 149.99, this.parentElement.previousElementSibling.src)">Agregar al Carrito</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/ar1.jpeg" alt="">
-                <div class="product-txt">
-                    <h3>Elis</h3>
-                    <p class="Precio">$300</p>
-                    <button onclick="agregarAlCarrito('Elis', 'images/4.png', 300)">Agregar al carrito</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/an.jpeg" alt="">
-                <div class="product-txt">
-                    <h3>Elisy</h3>
-                    <p class="Precio">$220</p>
-                    <button onclick="agregarAlCarrito('Elisy', 'images/5.png', 220)">Agregar al carrito</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/ca1.jpeg" alt="">
-                <div class="product-txt">
-                    <h3>Messi</h3>
-                    <p class="Precio">$390</p>
-                    <button onclick="agregarAlCarrito('Messi', 'images/6.png', 390)">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <section class="general">
-        <div class="general-1">
-            <h2>totan sinilique</h2>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Libero temporibus officiis voluptate enim officia,
-                 a cupiditate ullam doloribus laudantium modi asperiores corporis ea iusto tempora praesentium reprehenderit dolores aliquam adipisci!
-            </p>
-            <a href="#" class="btn-1">información</a>
-        </div>
-        <div class="general-2"></div>
-        
-    </section>
-    
-    <section class="general">
-        <div class="general-3"></div>
-        <div class="general-1">
-            <h2>totan sinilique</h2>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Libero temporibus officiis voluptate enim officia,
-                 a cupiditate ullam doloribus laudantium modi asperiores corporis ea iusto tempora praesentium reprehenderit dolores aliquam adipisci!
-            </p>
-            <a href="#" class="btn-1">información</a>
-        </div>
-    </section>
-
-    <section class="blog container ">
-        <h2>blog</h2>
-        <p>Libero temporibus officiis voluptate enim officia</p>
-
-        <div class="blog-content">
-            <div class="blog-1">
-                <img src="https://images.unsplash.com/photo-1515405295579-ba7e030031d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tendencias en Joyería">
-                <h3>Tendencias en Joyería 2024</h3>
-                <p>Descubre las últimas tendencias en joyería para este año</p>
-            </div>
-
-            <div class="blog-1">
-                <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cuidado de Joyas">
-                <h3>Cuidado de Joyas</h3>
-                <p>Consejos para mantener tus joyas en perfecto estado</p>
-            </div>
-
-            <div class="blog-1">
-                <img src="https://images.unsplash.com/photo-1515405295579-ba7e030031d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Joyas Artesanales">
-                <h3>Joyas Artesanales</h3>
-                <p>El valor de las piezas hechas a mano</p>
-            </div>
-        </div>
-
-        <a href="#" class="btn-1">información</a>
-    </section>
-
-
-    <footer class="footer">         
-            <div class="link">
-                <h3>loren</h3>
-                <ul>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                </ul>
-            </div>
-            <div class="link">
-                <h3>loren</h3>
-                <ul>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                </ul>
-            </div>
-            <div class="link">
-                <h3>loren</h3>
-                <ul>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                </ul>
-            </div>
-            <div class="link">
-                <h3>loren</h3>
-                <ul>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                    <li><a href="#">loren</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-    </footer>
-
     <!-- Modal de Checkout -->
     <div id="modal-checkout" class="modal">
-        <div class="modal-content checkout-content">
+        <div class="modal-content">
             <span class="close" onclick="cerrarCheckout()">&times;</span>
-            <h2>Finalizar Compra</h2>
+            <h2>Resumen del Pedido</h2>
             <div class="checkout-container">
                 <div class="resumen-pedido">
-                    <h3>Resumen del Pedido</h3>
                     <div id="resumen-productos"></div>
                     <div class="total-checkout">
                         <strong>Total:</strong>
-                        <span id="total-checkout">$0</span>
+                        <span id="total-checkout">$0.00</span>
                     </div>
                 </div>
                 <form id="checkout-form" onsubmit="return procesarPedido(event)">
-                    <h3>Información de Envío</h3>
-                    <input type="text" placeholder="Nombre completo" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="tel" placeholder="Teléfono" required>
-                    <input type="text" placeholder="Dirección" required>
-                    <input type="text" placeholder="Ciudad" required>
-                    <input type="text" placeholder="Código Postal" required>
-                    
-                    <h3>Método de Pago</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre completo" required>
+                        <input type="email" placeholder="Correo electrónico" required>
+                        <input type="tel" placeholder="Teléfono" required>
+                        <input type="text" placeholder="Dirección de envío" required>
+                    </div>
                     <div class="metodos-pago">
+                        <h3>Método de pago</h3>
                         <label>
-                            <input type="radio" name="pago" value="tarjeta" checked>
-                            Tarjeta de Crédito/Débito
+                            <input type="radio" name="pago" value="tarjeta" checked> Tarjeta de crédito/débito
                         </label>
                         <label>
-                            <input type="radio" name="pago" value="transferencia">
-                            Transferencia Bancaria
+                            <input type="radio" name="pago" value="transferencia"> Transferencia bancaria
                         </label>
-                    </div>
-
-                    <div id="datos-tarjeta">
-                        <input type="text" placeholder="Número de tarjeta" required>
-                        <div class="tarjeta-info">
-                            <input type="text" placeholder="MM/AA" required>
-                            <input type="text" placeholder="CVV" required>
+                        <div id="datos-tarjeta">
+                            <input type="text" placeholder="Número de tarjeta" required>
+                            <div class="tarjeta-info">
+                                <input type="text" placeholder="MM/AA" required>
+                                <input type="text" placeholder="CVV" required>
+                            </div>
                         </div>
-                        <input type="text" placeholder="Nombre en la tarjeta" required>
                     </div>
-
-                    <button type="submit" class="btn-1">Confirmar Pedido</button>
+                    <button type="submit" id="btn-finalizar-compra">Finalizar Compra</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="Javascrip.js" defer></script>
+    <script src="Javascrip.js"></script>
 </body>
 </html>
