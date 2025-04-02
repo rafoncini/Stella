@@ -121,37 +121,20 @@
         </div>  
       </section>
 
-      <section class="general" id="general">
-        <div class="general-content container">
-            <div class="general-txt">
-                <h2>Nuestra Historia</h2>
-                <p>Desde 2024, Stella ha sido sinónimo de excelencia en joyería artesanal. 
-                   Nuestra pasión por crear piezas únicas y la dedicación a la calidad nos 
-                   han convertido en referentes en el mundo de la joyería fina. Cada pieza 
-                   que creamos cuenta una historia y lleva consigo la tradición y el 
-                   cuidado de nuestros artesanos expertos.</p>
-                <a href="#" class="btn-1">Conocer Más</a>
-            </div>
-            
+      <section class="historia-compromiso">
+        <div class="historia">
+            <h2>Nuestra Historia</h2>
+            <p>Desde nuestros inicios, nos hemos dedicado a ofrecer los mejores productos de calidad a nuestros clientes...</p>
+            <button onclick="abrirModalHistoria()">Leer más</button>
         </div>
-      </section>
-
-      <section class="general">
-        <div class="general-content container">
-    
-            <div class="general-txt">
-                <h2>Compromiso con la Calidad</h2>
-                <p>En Stella, la calidad es nuestra prioridad. Utilizamos solo los mejores 
-                   materiales y gemas certificadas. Nuestro proceso de fabricación combina 
-                   técnicas tradicionales con tecnología moderna para garantizar la 
-                   durabilidad y belleza de cada pieza. Cada joya pasa por rigurosos 
-                   controles de calidad antes de llegar a tus manos.</p>
-                <a href="#" class="btn-1">Nuestro Proceso</a>
-            </div>
+        <div class="compromiso">
+            <h2>Compromiso con la Calidad</h2>
+            <p>Nos comprometemos a mantener los más altos estándares de calidad en todos nuestros productos...</p>
+            <button onclick="abrirModalCompromiso()">Leer más</button>
         </div>
-      </section>
+    </section>
 
-      <section class="blog">
+    <section class="blog">
         <h2>Blog</h2>
         <p class="txt-p">Descubre las últimas tendencias y novedades en el mundo de la joyería</p>
         
@@ -159,10 +142,10 @@
             <div class="blog-1">
                 <img src="images/ca6.jpg" alt="Tendencias en Joyería">
                 <div class="blog-content">
-                    <h3>Tendencias en Joyería verano 2024</h3>
+                    <h3>Tendencias en Joyería verano 2025</h3>
                     <p>Descubre las últimas tendencias en joyería para este año, desde piezas minimalistas hasta diseños llamativos.</p>
                     <div class="blog-footer">
-                        <span class="fecha">15 Mar 2024</span>
+                        <span class="fecha">15 abr 2025</span>
                         <a href="#" class="leer-mas">Leer más →</a>
                     </div>
                 </div>
@@ -174,7 +157,7 @@
                     <h3>Cuidado de Joyas</h3>
                     <p>Consejos expertos para mantener tus joyas en perfecto estado y prolongar su belleza a lo largo del tiempo.</p>
                     <div class="blog-footer">
-                        <span class="fecha">10 Mar 2024</span>
+                        <span class="fecha">10 abr 2025</span>
                         <a href="#" class="leer-mas">Leer más →</a>
                     </div>
                 </div>
@@ -186,7 +169,7 @@
                     <h3>Joyas Artesanales</h3>
                     <p>El valor y la belleza de las piezas hechas a mano y por qué son tan especiales en el mundo de la joyería.</p>
                     <div class="blog-footer">
-                        <span class="fecha">5 Mar 2024</span>
+                        <span class="fecha">5 abr 2025</span>
                         <a href="#" class="leer-mas">Leer más →</a>
                     </div>
                 </div>
@@ -458,6 +441,49 @@
                     </div>
                     <button type="submit" id="btn-finalizar-compra">Finalizar Compra</button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Historia -->
+    <div id="modal-historia" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('modal-historia')">&times;</span>
+            <h2>Nuestra Historia</h2>
+            <div class="modal-body">
+                <p>Desde nuestros inicios en 2020, nos hemos dedicado a ofrecer los mejores productos de calidad a nuestros clientes. Nuestra historia comenzó con una visión clara: proporcionar productos excepcionales que superen las expectativas de nuestros clientes.</p>
+                <p>A lo largo de los años, hemos crecido y evolucionado, pero siempre manteniendo nuestros valores fundamentales:</p>
+                <ul>
+                    <li>Compromiso con la calidad</li>
+                    <li>Atención al cliente excepcional</li>
+                    <li>Innovación continua</li>
+                    <li>Sostenibilidad y responsabilidad ambiental</li>
+                </ul>
+                <p>Hoy en día, seguimos trabajando arduamente para mantener nuestra reputación como líderes en la industria, ofreciendo productos que nuestros clientes pueden confiar.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compromiso -->
+    <div id="modal-compromiso" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('modal-compromiso')">&times;</span>
+            <h2>Compromiso con la Calidad</h2>
+            <div class="modal-body">
+                <p>En nuestra empresa, la calidad es nuestra prioridad número uno. Nos comprometemos a mantener los más altos estándares en cada aspecto de nuestro negocio:</p>
+                <ul>
+                    <li>Selección rigurosa de materias primas</li>
+                    <li>Procesos de producción optimizados</li>
+                    <li>Controles de calidad exhaustivos</li>
+                    <li>Certificaciones internacionales</li>
+                </ul>
+                <p>Nuestro compromiso con la calidad se refleja en:</p>
+                <ul>
+                    <li>Garantía de satisfacción del cliente</li>
+                    <li>Productos duraderos y confiables</li>
+                    <li>Servicio post-venta excepcional</li>
+                    <li>Mejora continua de nuestros procesos</li>
+                </ul>
             </div>
         </div>
     </div>

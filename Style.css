@@ -865,7 +865,7 @@ body {
     }
 
     .footer-1 h3::after {
-        left: 50%;
+    left: 50%;
         transform: translateX(-50%);
     }
 
@@ -1196,7 +1196,7 @@ body {
     transition: right 0.3s ease;
     z-index: 1000;
     display: flex;
-    flex-direction: column;
+        flex-direction: column;
 }
 
 .carrito.abierto {
@@ -1254,8 +1254,8 @@ body {
 .producto-carrito {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
+        gap: 10px;
+    }
 
 .imagen-carrito {
     width: 60px;
@@ -1312,7 +1312,7 @@ body {
 }
 
 #btn-finalizar-compra {
-    width: 100%;
+        width: 100%;
     padding: 12px;
     background-color: var(--primary-color);
     color: white;
@@ -1404,7 +1404,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+        gap: 20px;
     padding: 20px;
 }
 
@@ -1552,7 +1552,7 @@ body {
     height: 20px;
 }
 
-.product-content {
+    .product-content {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     padding: 10px;
@@ -1581,8 +1581,8 @@ body {
 
 .Joyeria-group {
     grid-template-columns: 1fr;
-    gap: 20px;
-}
+        gap: 20px;
+    }
 
 .Joya-1 {
     padding: 15px;
@@ -2072,7 +2072,7 @@ body {
 .blog-1 .blog-content {
     padding: 25px;
     flex-grow: 1;
-    display: flex;
+    display: flex; 
     flex-direction: column;
 }
 
@@ -2253,5 +2253,134 @@ body {
 
     .tarjeta-info {
         grid-template-columns: 1fr;
+    }
+}
+
+.historia-compromiso {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.historia-compromiso-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.historia-compromiso h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.historia-compromiso h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.historia-compromiso p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.historia-compromiso button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.historia-compromiso button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Estilos para los modales */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    margin: 50px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.modal-content .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-content .close:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .historia-compromiso-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .historia-compromiso h2 {
+        font-size: 2rem;
+    }
+
+    .modal-content {
+        margin: 20px;
+        padding: 20px;
     }
 }

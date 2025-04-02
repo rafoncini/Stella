@@ -382,6 +382,7 @@ document.querySelectorAll('input[name="pago"]').forEach(radio => {
 window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     if (event.target.id === 'modal-personalizar') {
         cerrarModalPersonalizar();
@@ -469,3 +470,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Funciones para los modales de historia y compromiso
+function abrirModalHistoria() {
+    const modal = document.getElementById('modal-historia');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function abrirModalCompromiso() {
+    const modal = document.getElementById('modal-compromiso');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
