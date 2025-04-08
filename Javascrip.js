@@ -59,15 +59,18 @@ function toggleCarrito() {
 }
 
 function cerrarCarrito() {
-    console.log('Cerrando carrito');
-    const carritoElement = document.getElementById('carrito');
+    const carrito = document.getElementById('carrito');
     const overlay = document.querySelector('.overlay');
     
-    if (carritoElement && overlay) {
-        carritoElement.classList.remove('abierto');
-        overlay.classList.remove('active');
-        carritoVisible = false;
+    if (carrito) {
+        carrito.classList.remove('abierto');
     }
+    
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+    
+    document.body.style.overflow = 'auto';
 }
 
 function guardarCarrito() {

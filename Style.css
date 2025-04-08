@@ -330,23 +330,6 @@ body {
     color: var(--accent-color);
 }
 
-
-.btn-1 {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    border-radius: 25px;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-1:hover {
-    background-color: var(--accent-color);
-    transform: scale(1.05);
-}
 #menu {
     display: none;
 }
@@ -2382,5 +2365,35 @@ body {
     .modal-content {
         margin: 20px;
         padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu label {
+        display: block;
+    }
+
+    .menu .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        padding: 20px;
+        display: none;
+    }
+
+    #menu:checked ~ .navbar {
+        display: block;
+    }
+
+    .menu .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu .navbar ul li {
+        width: 100%;
+        text-align: center;
     }
 }
