@@ -59,18 +59,15 @@ function toggleCarrito() {
 }
 
 function cerrarCarrito() {
-    const carrito = document.getElementById('carrito');
+    console.log('Cerrando carrito');
+    const carritoElement = document.getElementById('carrito');
     const overlay = document.querySelector('.overlay');
     
-    if (carrito) {
-        carrito.classList.remove('abierto');
-    }
-    
-    if (overlay) {
+    if (carritoElement && overlay) {
+        carritoElement.classList.remove('abierto');
         overlay.classList.remove('active');
+        carritoVisible = false;
     }
-    
-    document.body.style.overflow = 'auto';
 }
 
 function guardarCarrito() {
@@ -217,21 +214,25 @@ function mostrarNotificacion(mensaje) {
 
 // Funciones de Personalización
 function toggleSelectorPrenda() {
-    const selectorPrenda = document.getElementById("selector-prenda");
-    if (selectorPrenda) {
-        selectorPrenda.classList.toggle('abierto');
+    const selectorJoya = document.getElementById("selector-joya");
+    if (selectorJoya) {
+        if (selectorJoya.style.display === "block") {
+            selectorJoya.style.display = "none";
+        } else {
+            selectorJoya.style.display = "block";
+        }
     }
 }
 
-function seleccionarPrenda(prenda) {
-    prendaActual = prenda;
+function seleccionarJoya(joya) {
+    joyaActual = joya;
     const modalPersonalizar = document.getElementById("modal-personalizar");
-    const selectorPrenda = document.getElementById("selector-prenda");
+    const selectorJoya = document.getElementById("selector-joya");
     
     if (modalPersonalizar) {
         modalPersonalizar.style.display = "block";
-        if (selectorPrenda) {
-            selectorPrenda.classList.remove('abierto');
+        if (selectorJoya) {
+            selectorJoya.style.display = "none";
         }
     }
 }
@@ -243,20 +244,20 @@ function cerrarModalPersonalizar() {
     }
 }
 
-function agregarPrendaAlCarrito() {
+function agregarJoyaPersonalizadaAlCarrito() {
     const textoPersonalizado = document.getElementById("texto-personalizado").value;
     if (!textoPersonalizado) {
-        alert("Por favor, ingrese el texto para personalizar");
+        alert("Por favor, ingrese el texto para la dedicatoria");
         return;
     }
 
-    if (prendaActual) {
-        const prendaPersonalizada = {
-            ...prendaActual,
+    if (joyaActual) {
+        const joyaPersonalizada = {
+            ...joyaActual,
             texto: textoPersonalizado,
-            precio: prendaActual.precio + 10
+            precio: joyaActual.precio + 10
         };
-        agregarAlCarrito(prendaPersonalizada.nombre, prendaPersonalizada.precio, prendaPersonalizada.imagen);
+        agregarAlCarrito(joyaPersonalizada.nombre, joyaPersonalizada.precio, joyaPersonalizada.imagen);
         cerrarModalPersonalizar();
     }
 }
