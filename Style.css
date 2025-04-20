@@ -1057,18 +1057,35 @@ body {
 }
 
 #btn-vender {
-    margin-left: 1rem;
-    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #4A5D3F, #6B8E23);
+    border: none;
+    cursor: pointer;
+    padding: 12px 25px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(74, 93, 63, 0.2);
 }
 
 #btn-vender:hover {
-    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    background: linear-gradient(45deg, #6B8E23, #4A5D3F);
+    box-shadow: 0 6px 20px rgba(74, 93, 63, 0.3);
+}
+
+#btn-vender:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(74, 93, 63, 0.2);
 }
 
 @media (max-width: 768px) {
     #btn-vender {
-        margin: 1rem 0;
-        width: 100%;
+        padding: 10px 20px;
+        font-size: 0.9em;
     }
 }
 
