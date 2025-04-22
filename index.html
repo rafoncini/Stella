@@ -10,7 +10,6 @@
 <body>
     <header class="header" id="inicio">
         <div class="menu container">
-            <a href="#" class="logo">Stella</a>
             <input type="checkbox" id="menu">
             <label for="menu">
                 <img src="images/menu.png" class="menu-icono" alt="Icono de menú">
@@ -27,7 +26,7 @@
 
             <div class="header-buttons">
                 <button id="btn-vender" class="btn-1" onclick="mostrarFormularioVenta()">
-                    Vender Joya
+                    <img src="images/vender.png" alt="Vender Joya">
                 </button>
 
                 <button id="btn-personalizar" onclick="toggleSelectorPrenda()">
@@ -44,7 +43,7 @@
         
         <div class="header-content container">
             <div class="header-txt">
-                <h1>Joyería</h1>
+                <h1>Stella</h1>
                 <p>Descubre nuestra colección exclusiva de joyas artesanales</p>
             </div>
             <div class="header-img">
@@ -172,7 +171,7 @@
     </section>
 
     <section class="product-container" id="lista-1">
-        <h2>Productos</h2>
+        <h2>Productos de Temporada</h2>
         <div class="product-content">
             <div class="product">
                 <img src="images/co1.jpg" alt="Collar de Oro Serpiente">
@@ -197,54 +196,20 @@
                     <button onclick="agregarAlCarrito('Aretes Espiral Dorados', 449.99, 'images/ar2.jpg')">Agregar al Carrito</button>
                 </div>
             </div>
-
-            <div class="product">
-                <img src="images/ar1.jpg" alt="Set de aretes y collar">
-                <div class="product-txt">
-                    <div>
-                        <h3>Set de aretes y collar</h3>
-                        <p>Set simple y elegante en oro 14k</p>
-                        <p class="Precio">$499.99</p>
-                    </div>
-                    <button onclick="agregarAlCarrito('Set de aretes y collar', 499.99, 'images/ar1.jpg')">Agregar al Carrito</button>
+        <div class="product">
+            <img src="images/g1.jpg" alt="Conjunto Premium">
+            <div class="product-txt">
+                <div>
+                    <h3>Conjunto Premium Stella</h3>
+                    <p>Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k</p>
+                    <p class="Precio">$1,299.99</p>
                 </div>
+                <button onclick="agregarAlCarrito('Conjunto Premium Stella', 1299.99, 'images/g1.jpg')">Agregar al Carrito</button>
             </div>
-
-            <div class="product">
-                <img src="images/an1.jpg" alt="Anillo Hojas Dorado">
-                <div class="product-txt">
-                    <div>
-                        <h3>Anillo Hojas de Oro</h3>
-                        <p>Anillo elegante en oro 18k con diseño de hojas y acabado mate</p>
-                        <p class="Precio">$399.99</p>
-                    </div>
-                    <button onclick="agregarAlCarrito('Anillo Hojas de Oro', 399.99, 'images/an1.jpg')">Agregar al Carrito</button>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="images/co2.jpg" alt="Set de Joyas Corazón">
-                <div class="product-txt">
-                    <div>
-                        <h3>Set Corazón Dorado</h3>
-                        <p>Conjunto de collar y aretes con diseño de corazón en oro 18k</p>
-                        <p class="Precio">$799.99</p>
-                    </div>
-                    <button onclick="agregarAlCarrito('Set Corazón Dorado', 799.99, 'images/co2.jpg')">Agregar al Carrito</button>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="images/g1.jpg" alt="Conjunto Premium">
-                <div class="product-txt">
-                    <div>
-                        <h3>Conjunto Premium Stella</h3>
-                        <p>Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k</p>
-                        <p class="Precio">$1,299.99</p>
-                    </div>
-                    <button onclick="agregarAlCarrito('Conjunto Premium Stella', 1299.99, 'images/g1.jpg')">Agregar al Carrito</button>
-                </div>
-            </div>
+        </div>
+        </div>
+        <div class="catalogo-button-container">
+            <button class="btn-catalogo" onclick="abrirCatalogo()">Ver Catálogo Completo</button>
         </div>
     </section>
     

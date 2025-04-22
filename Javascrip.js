@@ -5,6 +5,8 @@ let total = 0;
 // Variables para el carrusel
 let currentImageIndex = 0;
 const images = document.querySelectorAll('.header-img img');
+let intervaloAutomatico;
+const TIEMPO_TRANSICION = 4000; // 4 segundos entre transiciones
 
 // Variables globales del carrito
 let carritoVisible = false;
@@ -164,7 +166,7 @@ function cambiarCantidad(nombre, cambio) {
         producto.cantidad += cambio;
         if (producto.cantidad <= 0) {
             eliminarDelCarrito(nombre);
-        } else {
+    } else {
             producto.total = producto.cantidad * producto.precio;
             guardarCarrito();
             actualizarCarritoUI();
@@ -267,7 +269,7 @@ function mostrarFormularioVenta() {
     const modalVenta = document.getElementById("modal-venta");
     if (modalVenta) {
         modalVenta.style.display = "block";
-    } else {
+                } else {
         console.error("No se encontró el modal de venta");
     }
 }
@@ -400,6 +402,85 @@ function inicializarCarrusel() {
     // Asegurarse de que la primera imagen esté activa
     images[0].classList.add('active');
     currentImageIndex = 0;
+
+    // Iniciar el carrusel automático
+    iniciarCarruselAutomatico();
+
+    // Agregar indicadores de posición
+    agregarIndicadores();
+
+    // Agregar eventos de teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') cambiarImagen(-1);
+        if (e.key === 'ArrowRight') cambiarImagen(1);
+    });
+
+    // Agregar eventos táctiles
+    const headerImg = document.querySelector('.header-img');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    headerImg.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    headerImg.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                cambiarImagen(1); // Swipe izquierda
+            } else {
+                cambiarImagen(-1); // Swipe derecha
+            }
+        }
+    }
+}
+
+// Función para agregar indicadores de posición
+function agregarIndicadores() {
+    const indicadoresContainer = document.createElement('div');
+    indicadoresContainer.className = 'carrusel-indicadores';
+    
+    images.forEach((_, index) => {
+        const indicador = document.createElement('button');
+        indicador.className = 'indicador';
+        indicador.setAttribute('aria-label', `Ir a la imagen ${index + 1}`);
+        indicador.addEventListener('click', () => irAImagen(index));
+        indicadoresContainer.appendChild(indicador);
+    });
+    
+    document.querySelector('.header-img').appendChild(indicadoresContainer);
+    actualizarIndicadores();
+}
+
+// Función para actualizar los indicadores
+function actualizarIndicadores() {
+    const indicadores = document.querySelectorAll('.indicador');
+    indicadores.forEach((indicador, index) => {
+        if (index === currentImageIndex) {
+            indicador.classList.add('active');
+        } else {
+            indicador.classList.remove('active');
+        }
+    });
+}
+
+// Función para ir a una imagen específica
+function irAImagen(index) {
+    if (index < 0 || index >= images.length) return;
+    
+    images[currentImageIndex].classList.remove('active');
+    currentImageIndex = index;
+    images[currentImageIndex].classList.add('active');
+    actualizarIndicadores();
+    reiniciarCarruselAutomatico();
 }
 
 // Función para cambiar la imagen manualmente
@@ -414,6 +495,12 @@ function cambiarImagen(direction) {
     
     // Agregar la clase active a la nueva imagen
     images[currentImageIndex].classList.add('active');
+    
+    // Actualizar indicadores
+    actualizarIndicadores();
+    
+    // Reiniciar el carrusel automático
+    reiniciarCarruselAutomatico();
 }
 
 // Función para cambiar la imagen automáticamente
@@ -421,17 +508,25 @@ function cambiarImagenAutomatica() {
     cambiarImagen(1);
 }
 
-// Iniciar el carrusel automático
-let intervaloAutomatico = setInterval(cambiarImagenAutomatica, 4000);
+// Función para iniciar el carrusel automático
+function iniciarCarruselAutomatico() {
+    intervaloAutomatico = setInterval(cambiarImagenAutomatica, TIEMPO_TRANSICION);
+}
 
-// Detener el carrusel automático cuando el usuario interactúa con los botones
+// Función para reiniciar el carrusel automático
+function reiniciarCarruselAutomatico() {
+    clearInterval(intervaloAutomatico);
+    iniciarCarruselAutomatico();
+}
+
+// Pausar el carrusel cuando el usuario interactúa con los controles
 document.querySelectorAll('.carrusel-control').forEach(button => {
     button.addEventListener('mouseenter', () => {
         clearInterval(intervaloAutomatico);
     });
     
     button.addEventListener('mouseleave', () => {
-        intervaloAutomatico = setInterval(cambiarImagenAutomatica, 4000);
+        iniciarCarruselAutomatico();
     });
 });
 
@@ -492,4 +587,9 @@ function cerrarModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
+}
+
+function abrirCatalogo() {
+    // Por ahora, redirigiremos a una página de catálogo temporal
+    window.location.href = 'catalogo.html';
 }
