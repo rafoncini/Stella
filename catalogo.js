@@ -47,8 +47,18 @@ const productos = [
         precio: 1299.99,
         imagen: "images/g1.jpg",
         categoria: "conjuntos"
+    },
+    {
+        id: 7,
+        nombre: "Conjunto Premium Stella",
+        descripcion: "Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k",
+        precio: 1299.99,
+        imagen: "images/g1.jpg",
+        categoria: "conjuntos"
     }
 ];
+
+
 
 // Función para mostrar productos
 function mostrarProductos(productosFiltrados = productos) {
