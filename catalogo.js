@@ -42,20 +42,156 @@ const productos = [
     },
     {
         id: 6,
-        nombre: "Conjunto Premium Stella",
-        descripcion: "Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k",
-        precio: 1299.99,
-        imagen: "images/g1.jpg",
-        categoria: "conjuntos"
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/An.jpeg",
+        categoria: "anillos"
     },
     {
         id: 7,
-        nombre: "Conjunto Premium Stella",
-        descripcion: "Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k",
-        precio: 1299.99,
-        imagen: "images/g1.jpg",
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Cj.jpeg",
         categoria: "conjuntos"
-    }
+    },
+    {
+        id: 8,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/C.jpeg",
+        categoria: "collares"
+    },
+    {
+        id: 9,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Ar.jpeg",
+        categoria: "aretes"
+    },
+    {
+        id: 10,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/An2.jpeg",
+        categoria: "anillos"
+    },
+    {
+        id: 11,
+       nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/An3.jpeg",
+        categoria: "anillos"
+    },
+    {
+        id: 12,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Rj.jpeg",
+        categoria: "relojes"
+    },
+    {
+        id: 13,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/An4.jpeg",
+        categoria: "anillos"
+    },
+    {
+        id: 14,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Rj2.jpeg",
+        categoria: "relojes"
+    },
+    {
+        id: 15,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/An5.jpeg",
+        categoria: "anillos"
+    },
+    {
+        id: 17,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Rj6.jpeg",
+        categoria: "anillos"
+    },
+    {
+        id: 18,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/C.jpeg",
+        categoria: "collares"
+    },
+    {
+        id: 19,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Cj2.jpeg",
+        categoria: "conjuntos"
+    },
+    {
+        id: 20,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Ar2.jpeg",
+        categoria: "aretes"
+    },
+    {
+        id: 21,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Ar3.jpeg",
+        categoria: "aretes"
+    },
+    {
+        id: 22,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Rj4.jpeg",
+        categoria: "relojes"
+    },
+    {
+        id: 23,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Rj5.jpeg",
+        categoria: "relojes"
+    },
+    {
+        id: 24,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/Ar4.jpeg",
+        categoria: "aretes"
+    },
+    {
+        id: 25,
+        nombre: "Nom",
+        descripcion: "Des",
+        precio: 299.99,
+        imagen: "imagescat/An6.jpeg",
+        categoria: "anillos"
+    },
 ];
 
 

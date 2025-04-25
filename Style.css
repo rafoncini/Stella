@@ -367,6 +367,7 @@ body {
     width: 30px;
     height: 30px;
     cursor: pointer;
+    margin: 0;
 }
 
 .menu {
@@ -509,8 +510,8 @@ body {
 }
 
 .imagen-carrito {
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -813,32 +814,42 @@ body {
     margin-left: auto;
 }
 
-#btn-vender, #btn-personalizar {
-    width: auto;
-    padding: 8px 15px;
-    font-size: 0.9em;
-}
-
-#btn-personalizar {
+.header-buttons button {
+    background: none;
+    border: none;
+    padding: 8px;
+    margin: 0 5px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    cursor: pointer;
-    padding: 8px 15px;
+    justify-content: center;
+}
+
+.header-buttons img {
+    width: 35px; 
+    height: 35px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%);
+}
+
+/* Ícono del carrito */
+.carrito-icono {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) saturate(100%);
+}
+
+/* Contador del carrito */
+.carrito-count {
+    position: absolute;
+    background-color: red;
     color: white;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border-radius: 25px;
-    white-space: nowrap;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    top: -5px;
+    right: -5px;
 }
-
-#btn-personalizar img {
-    width: 20px;
-    height: 20px;
-}
-
 .product-content {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -898,6 +909,7 @@ body {
     color: white;
     padding: 60px 0 30px;
     position: relative;
+    margin-top: 20px;
 }
 
 .footer-content {
@@ -1040,7 +1052,6 @@ body {
 .product-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 30px;
     padding: 20px;
     max-width: 1400px;
@@ -1219,27 +1230,34 @@ body {
 #btn-vender {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: linear-gradient(45deg, #4A5D3F, #6B8E23);
+    gap: 5px;
     border: none;
     cursor: pointer;
-    padding: 12px 25px;
+    padding: 8px 15px;
     color: white;
     font-weight: 600;
     transition: all 0.3s ease;
     border-radius: 25px;
-    box-shadow: 0 4px 15px rgba(74, 93, 63, 0.2);
+    white-space: nowrap;
+}
+
+#btn-vender .img-vender{
+    width: 35px;
+    height: 35px;
+    margin: 0;
 }
 
 #btn-vender:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(45deg, #6B8E23, #4A5D3F);
-    box-shadow: 0 6px 20px rgba(74, 93, 63, 0.3);
+        transform: translateY(-2px);
+        background-color: rgba(255, 255, 255, 0.2);
+    
 }
 
 #btn-vender:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(74, 93, 63, 0.2);
+    
+        transform: translateY(-2px);
+        background-color: rgba(255, 255, 255, 0.2);
+    
 }
 
 @media (max-width: 768px) {
@@ -1282,7 +1300,6 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    background: rgba(255, 255, 255, 0.1);
     border: none;
     cursor: pointer;
     padding: 8px 15px;
@@ -1298,12 +1315,12 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-#btn-personalizar img {
-    width: 25px;
-    height: 25px;
+#btn-personalizar .img-personalizar {
+    width: 50px;
+    height: 45px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid white;
+    
 }
 
 @media (max-width: 768px) {
@@ -1317,18 +1334,14 @@ body {
 
     #btn-personalizar {
         padding: 5px 8px;
-        background: none;
         width: auto;
         min-width: auto;
     }
 
-    #btn-personalizar span {
-        display: none;
-    }
 
     #btn-personalizar img {
-        width: 20px;
-        height: 20px;
+        width: 35px;
+        height: 35px;
         margin: 0;
     }
 
@@ -1766,7 +1779,7 @@ body {
 }
 
     .product-content {
-    grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
     padding: 10px;
 }
@@ -2069,7 +2082,6 @@ body {
 .product-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 30px;
     max-width: 1400px;
     margin: 0 auto;
@@ -2082,7 +2094,7 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
 }
@@ -2749,7 +2761,7 @@ body {
 
 .catalogo-button-container {
     text-align: center;
-    margin-top: -600px; /* Valor negativo para subir el botón */
+    margin-top: 20px; /* Valor negativo para subir el botón */
     position: relative; /* Asegura que el botón permanezca en el flujo del documento */
     z-index: 1; /* Evita problemas de superposición */
 }
@@ -2777,3 +2789,18 @@ body {
       margin-bottom: 30px;
     }
   }
+
+
+  .img-vender {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+   
+
+
+
