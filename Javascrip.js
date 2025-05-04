@@ -424,10 +424,10 @@ function inicializarCarrusel() {
         touchStartX = e.changedTouches[0].screenX;
     }, false);
 
-    headerImg.addEventListener('touchend', (e) => {
+    headerImg.addEventListener('touchend', (e => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
-    }, false);
+    }), false);
 
     function handleSwipe() {
         const swipeThreshold = 50;
@@ -568,6 +568,100 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation();
         });
     }
+
+    // Carrusel de productos center mode infinito
+    const carrusel = document.getElementById('carrusel-wrapper');
+    let slides = Array.from(document.querySelectorAll('.carrusel-slide'));
+    const prevBtn = document.querySelector('.carrusel-control.prev');
+    const nextBtn = document.querySelector('.carrusel-control.next');
+    const paginacion = document.getElementById('carrusel-paginacion');
+    let slidesToShow = getSlidesToShow();
+    let currentIndex = 0;
+    let autoScroll;
+
+    function getSlidesToShow() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+    }
+
+    function updateSlides() {
+        // Elimina todos los slides del carrusel
+        carrusel.innerHTML = '';
+        // Calcula los índices de los slides a mostrar (anteriores, actual, siguientes)
+        let total = slides.length;
+        let half = Math.floor(slidesToShow / 2);
+        for (let i = -half; i <= half; i++) {
+            let idx = (currentIndex + i + total) % total;
+            let slide = slides[idx].cloneNode(true);
+            slide.classList.remove('activo');
+            if (i === 0) slide.classList.add('activo');
+            carrusel.appendChild(slide);
+        }
+    }
+
+    function centrarSlideActivo(anim = true) {
+        updateSlides();
+        // Centra el slide activo (el del medio)
+        const slideWidth = carrusel.children[0].offsetWidth + 24; // 24px gap
+        const carruselWidth = carrusel.offsetWidth;
+        const offset = slideWidth * Math.floor(slidesToShow / 2) - (carruselWidth / 2) + (slideWidth / 2);
+        carrusel.scrollTo({
+            left: offset,
+            behavior: anim ? 'smooth' : 'auto'
+        });
+        actualizarPaginacion();
+    }
+
+    function moverCarrusel(direction) {
+        currentIndex = (currentIndex + direction + slides.length) % slides.length;
+        centrarSlideActivo();
+    }
+
+    function crearPaginacion() {
+        paginacion.innerHTML = '';
+        for (let i = 0; i < slides.length; i++) {
+            const punto = document.createElement('div');
+            punto.className = 'punto';
+            if (i === currentIndex) punto.classList.add('activo');
+            punto.addEventListener('click', () => {
+                currentIndex = i;
+                centrarSlideActivo();
+            });
+            paginacion.appendChild(punto);
+        }
+    }
+
+    function actualizarPaginacion() {
+        const puntos = paginacion.querySelectorAll('.punto');
+        puntos.forEach((punto, i) => {
+            punto.classList.toggle('activo', i === currentIndex);
+        });
+    }
+
+    function autoScrollStart() {
+        autoScroll = setInterval(() => {
+            moverCarrusel(1);
+        }, 4000);
+    }
+    function autoScrollStop() {
+        clearInterval(autoScroll);
+    }
+
+    prevBtn.addEventListener('click', () => moverCarrusel(-1));
+    nextBtn.addEventListener('click', () => moverCarrusel(1));
+    carrusel.addEventListener('mouseenter', autoScrollStop);
+    carrusel.addEventListener('mouseleave', autoScrollStart);
+
+    window.addEventListener('resize', () => {
+        slidesToShow = getSlidesToShow();
+        centrarSlideActivo(false);
+    });
+
+    // Inicializar
+    crearPaginacion();
+    centrarSlideActivo(false);
+    autoScrollStart();
 });
 
 // Funciones para los modales de historia y compromiso
@@ -593,3 +687,5 @@ function abrirCatalogo() {
     // Por ahora, redirigiremos a una página de catálogo temporal
     window.location.href = 'catalogo.html';
 }
+
+

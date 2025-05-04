@@ -123,8 +123,15 @@ body {
     }
 }
 
+/* --- INICIO BLOQUE UNIFICADO .form-group --- */
 .form-group {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 0;
+    background: none;
+    border-radius: 0;
 }
 
 .form-group label {
@@ -143,6 +150,7 @@ body {
     border-radius: 8px;
     font-size: 16px;
     transition: all 0.3s ease;
+    margin-bottom: 0;
 }
 
 .form-group input:focus,
@@ -157,6 +165,7 @@ body {
     min-height: 100px;
     resize: vertical;
 }
+/* --- FIN BLOQUE UNIFICADO .form-group --- */
 
 .modal-content button {
     width: 100%;
@@ -247,24 +256,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.form-group label {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group select {
-    padding: 10px;
-    border: 2px solid #eee;
-    border-radius: 8px;
 }
 
 .botones-accion {
@@ -1680,6 +1671,7 @@ body {
     right: 15px;
 }
 
+/* Mejoras responsive */
 @media (max-width: 768px) {
     .header-img {
         max-width: 100%;
@@ -2799,8 +2791,259 @@ body {
     cursor: pointer;
 }
 
+.hero {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-logo {
+    height: 260px;
+    margin-bottom: 10px;
+  }
+  
+  .carrusel-wrapper {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+  
+  .carrusel-slide {
+    flex: 0 0 28vw;
+    min-width: 260px;
+    max-width: 350px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  
+  .carrusel-slide.activo {
+    transform: scale(1.08);
+    opacity: 1;
+    z-index: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .carrusel-slide img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .carrusel-slide.activo img {
+    transform: scale(1.05);
+  }
+  
+  .carrusel-slide h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2d2d2d;
+  }
+  
+  .precio-producto {
+    font-size: 1rem;
+    color: #7a7a7a;
+  }
+  
+  .iva {
+    font-size: 0.85em;
+    color: #b0b0b0;
+  }
+  
+  .boton-personalizar {
+    background: #d2a06e;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .boton-personalizar:hover {
+    background: #b88a5a;
+  }
+  
+  .carrusel-paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 8px;
+  }
+  
+  .punto {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+  
+  .punto.activo {
+    background: #d2a06e;
+  }
 
-   
+.carrusel-productos {
+    padding: 40px 0;
+    background-color: var(--background-color);
+    text-align: center;
+}
 
+.carrusel-productos h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.carrusel-productos h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.carrusel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrusel-wrapper {
+    display: flex;
+    gap: 24px;
+    overflow: hidden;
+    width: 100%;
+    scroll-behavior: smooth;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrusel-slide {
+    flex: 0 0 32%;
+    min-width: 280px;
+    max-width: 350px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(92, 105, 70, 0.08);
+    padding: 20px 10px 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s, transform 0.3s, opacity 0.3s;
+    opacity: 0.6;
+    transform: scale(0.92);
+    z-index: 0;
+}
+
+.carrusel-slide.activo {
+    opacity: 1;
+    transform: scale(1.08);
+    z-index: 2;
+    box-shadow: 0 8px 25px rgba(92, 105, 70, 0.18);
+}
+
+.carrusel-slide img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.carrusel-slide.activo img {
+    transform: scale(1.04);
+}
+
+.carrusel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carrusel-control.prev { left: -20px; }
+.carrusel-control.next { right: -20px; }
+.carrusel-control:hover {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(92, 105, 70, 0.18);
+}
+
+.carrusel-paginacion {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+.punto {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+.punto.activo {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+@media (max-width: 900px) {
+  .carrusel-slide {
+    flex: 0 0 48%;
+    min-width: 180px;
+    max-width: 90vw;
+  }
+}
+@media (max-width: 600px) {
+  .carrusel-slide {
+    flex: 0 0 98vw;
+    min-width: 140px;
+    max-width: 98vw;
+  }
+  .carrusel-control.prev { left: 0; }
+  .carrusel-control.next { right: 0; }
+}
 
 

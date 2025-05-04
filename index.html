@@ -42,6 +42,9 @@
         </div>
         
         <div class="header-content container">
+            <div class="hero">
+                <img src="images/logo.png" alt="Logo Stella" class="hero-logo">
+              </div>
             <div class="header-txt">
                 <h1>Stella</h1>
                 <p>Descubre nuestra colección exclusiva de joyas artesanales</p>
@@ -170,44 +173,51 @@
         </div>
     </section>
 
-    <section class="product-container" id="lista-1">
+    <section class="carrusel-productos" id="carrusel-productos">
         <h2>Productos de Temporada</h2>
-        <div class="product-content">
-            <div class="product">
-                <img src="images/co1.jpg" alt="Collar de Oro Serpiente">
-                <div class="product-txt">
-                    <div>
-                        <h3>Collar Serpiente Dorado</h3>
-                        <p>Elegante collar de oro 18k con diseño de serpiente flexible, acabado brillante</p>
-                        <p class="Precio">$599.99</p>
-                    </div>
-                    <button onclick="agregarAlCarrito('Collar Serpiente Dorado', 599.99, 'images/co1.jpg')">Agregar al Carrito</button>
+        <div class="carrusel-container">
+            <button class="carrusel-control prev" aria-label="Anterior">❮</button>
+            <div class="carrusel-wrapper" id="carrusel-wrapper">
+                <div class="carrusel-slide">
+                    <img src="images/ar1.jpg" alt="Aretes de Oro">
+                    <h3>Aretes de Oro</h3>
+                    <p class="precio-producto">RD$8,000 <span class="iva">ITBIS incl.</span></p>
+                    <button class="boton-personalizar">Personalizar producto</button>
+                </div>
+                <div class="carrusel-slide">
+                    <img src="images/co1.jpg" alt="Collar de Oro">
+                    <h3>Collar de Oro</h3>
+                    <p class="precio-producto">RD$15,000 <span class="iva">ITBIS incl.</span></p>
+                    <button class="boton-personalizar">Personalizar producto</button>
+                </div>
+                <div class="carrusel-slide">
+                    <img src="imagescat/Rj2.jpeg" alt="Reloj de Lujo">
+                    <h3>Reloj de Lujo</h3>
+                    <p class="precio-producto">RD$20,000 <span class="iva">ITBIS incl.</span></p>
+                    <button class="boton-personalizar">Personalizar producto</button>
+                </div>
+                <div class="carrusel-slide">
+                    <img src="images/b1.jpg" alt="Pulsera de Oro">
+                    <h3>Pulsera de Oro</h3>
+                    <p class="precio-producto">RD$10,000 <span class="iva">ITBIS incl.</span></p>
+                    <button class="boton-personalizar">Personalizar producto</button>
+                </div>
+                <div class="carrusel-slide">
+                    <img src="images/ar2.jpg" alt="Aretes de Oro">
+                    <h3>Aretes de Oro</h3>
+                    <p class="precio-producto">RD$8,000 <span class="iva">ITBIS incl.</span></p>
+                    <button class="boton-personalizar">Personalizar producto</button>
+                </div>
+                <div class="carrusel-slide">
+                    <img src="images/co2.jpg" alt="Collar de Oro">
+                    <h3>Collar de Oro</h3>
+                    <p class="precio-producto">RD$15,000 <span class="iva">ITBIS incl.</span></p>
+                    <button class="boton-personalizar">Personalizar producto</button>
                 </div>
             </div>
-
-            <div class="product">
-                <img src="images/ar2.jpg" alt="Aretes de Oro Espiral">
-                <div class="product-txt">
-                    <div>
-                        <h3>Aretes Espiral Dorados</h3>
-                        <p>Aretes de oro con diseño espiral moderno, perfectos para ocasiones especiales</p>
-                        <p class="Precio">$449.99</p>
-                    </div>
-                    <button onclick="agregarAlCarrito('Aretes Espiral Dorados', 449.99, 'images/ar2.jpg')">Agregar al Carrito</button>
-                </div>
-            </div>
-        <div class="product">
-            <img src="images/g1.jpg" alt="Conjunto Premium">
-            <div class="product-txt">
-                <div>
-                    <h3>Conjunto Premium Stella</h3>
-                    <p>Set completo de joyas premium que incluye collar, aretes y pulsera en oro 18k</p>
-                    <p class="Precio">$1,299.99</p>
-                </div>
-                <button onclick="agregarAlCarrito('Conjunto Premium Stella', 1299.99, 'images/g1.jpg')">Agregar al Carrito</button>
-            </div>
+            <button class="carrusel-control next" aria-label="Siguiente">❯</button>
         </div>
-        </div>
+        <div class="carrusel-paginacion" id="carrusel-paginacion"></div>
         <div class="catalogo-button-container">
             <button class="btn-catalogo" onclick="abrirCatalogo()">Ver Catálogo Completo</button>
         </div>
@@ -217,7 +227,7 @@
         <div class="footer-content container">
             <div class="footer-1">
                 <h3>Stella Joyería</h3>
-                <p>Tu destino para joyas únicas y elegantes. Creando momentos especiales desde 2010.</p>
+                <p>Tu destino para joyas únicas y elegantes. Creando momentos especiales.</p>
             </div>
             <div class="footer-1">
                 <h3>Enlaces Rápidos</h3>
@@ -453,7 +463,6 @@
             </div>
         </div>
     </div>
-
     <script src="Javascrip.js"></script>
 </body>
 </html>
